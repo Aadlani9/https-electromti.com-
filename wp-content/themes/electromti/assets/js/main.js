@@ -19,6 +19,7 @@
             this.productTabs();
             this.addToCart();
             this.mobileMenu();
+            this.searchPanel();
             this.stickyHeader();
             this.searchToggle();
             this.quickView();
@@ -159,25 +160,23 @@
 
         // Mobile Menu
         mobileMenu: function() {
-            var $toggle = $('#categoriesToggle');
+            var $mobileToggle = $('#mobileMenuToggle');
+            var $categoriesToggle = $('#categoriesToggle');
             var $menu = $('.nav-menu');
             var $mobilePanel = $('#mobileMenuPanel');
             var $mobileOverlay = $('#mobileMenuOverlay');
             var $mobileClose = $('#mobileMenuClose');
             var $submenuToggles = $('.mobile-menu-item-toggle');
 
-            // Toggle for mobile view - open mobile panel
-            $toggle.on('click', function() {
-                if ($(window).width() <= 768) {
-                    // On mobile, open the mobile panel
-                    $mobilePanel.addClass('active');
-                    $mobileOverlay.addClass('active');
-                    $('body').css('overflow', 'hidden');
-                } else {
-                    // On desktop, toggle dropdown menu
-                    $menu.slideToggle(300);
-                    $(this).toggleClass('active');
-                }
+            // Mobile hamburger toggle
+            $mobileToggle.on('click', function() {
+                openMobileMenu();
+            });
+
+            // Categories button (desktop)
+            $categoriesToggle.on('click', function() {
+                $menu.slideToggle(300);
+                $(this).toggleClass('active');
             });
 
             // Close mobile panel
@@ -188,6 +187,12 @@
             $mobileOverlay.on('click', function() {
                 closeMobileMenu();
             });
+
+            function openMobileMenu() {
+                $mobilePanel.addClass('active');
+                $mobileOverlay.addClass('active');
+                $('body').css('overflow', 'hidden');
+            }
 
             function closeMobileMenu() {
                 $mobilePanel.removeClass('active');
@@ -214,6 +219,49 @@
             $(document).on('keydown', function(e) {
                 if (e.key === 'Escape') {
                     closeMobileMenu();
+                }
+            });
+        },
+
+        // Search Panel
+        searchPanel: function() {
+            var $searchTrigger = $('#searchTrigger');
+            var $mobileSearchBtn = $('#mobileSearchBtn');
+            var $searchPanel = $('#searchPanel');
+            var $searchPanelBack = $('#searchPanelBack');
+            var $searchPanelInput = $('#searchPanelInput');
+
+            // Open search panel
+            $searchTrigger.on('click', function() {
+                openSearchPanel();
+            });
+
+            $mobileSearchBtn.on('click', function() {
+                openSearchPanel();
+            });
+
+            // Close search panel
+            $searchPanelBack.on('click', function() {
+                closeSearchPanel();
+            });
+
+            function openSearchPanel() {
+                $searchPanel.addClass('active');
+                $('body').css('overflow', 'hidden');
+                setTimeout(function() {
+                    $searchPanelInput.focus();
+                }, 300);
+            }
+
+            function closeSearchPanel() {
+                $searchPanel.removeClass('active');
+                $('body').css('overflow', '');
+            }
+
+            // Close on escape key
+            $(document).on('keydown', function(e) {
+                if (e.key === 'Escape' && $searchPanel.hasClass('active')) {
+                    closeSearchPanel();
                 }
             });
         },

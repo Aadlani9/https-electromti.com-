@@ -63,6 +63,9 @@ function electromti_scripts() {
     // Main Stylesheet
     wp_enqueue_style('electromti-style', get_stylesheet_uri(), array(), '1.0.0');
 
+    // Shop Stylesheet
+    wp_enqueue_style('electromti-shop', get_template_directory_uri() . '/assets/css/shop.css', array('electromti-style'), '1.0.0');
+
     // Custom JS
     wp_enqueue_script('electromti-main', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), '1.0.0', true);
 

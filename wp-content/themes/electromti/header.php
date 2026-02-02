@@ -23,7 +23,7 @@
 
                 <!-- Logo -->
                 <a href="<?php echo esc_url(home_url('/')); ?>" class="site-logo">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.svg" alt="ElectroMTI" class="logo-image">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png" alt="ElectroMTI" class="logo-image">
                     <span class="logo-text">ELECTROMTI</span>
                 </a>
 

@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda - ElectroMTI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --brand-dark: #072553;
+            --brand-light: #14e6f4;
+            --brand-orange: #ff6b00;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --bg-white: #ffffff;
+            --bg-gray: #f5f5f5;
+            --bg-light-gray: #fafafa;
+            --border-color: #e0e0e0;
+            --success: #28a745;
+            --danger: #dc3545;
+            --shadow: 0 2px 8px rgba(0,0,0,0.1);
+            --shadow-hover: 0 4px 16px rgba(0,0,0,0.15);
+            --radius: 8px;
+            --radius-lg: 12px;
+            --transition: all 0.3s ease;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-white); color: var(--text-dark); line-height: 1.6; font-size: 14px; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        button { cursor: pointer; border: none; background: none; font-family: inherit; }
+        img { max-width: 100%; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 15px; }
+
+        /* Top Bar & Header - Same as product page */
+        .top-bar { background: var(--brand-dark); color: white; padding: 8px 0; font-size: 12px; }
+        .top-bar-content { display: flex; justify-content: space-between; }
+        .top-bar-left { display: flex; gap: 20px; }
+        .top-bar a { color: white; opacity: 0.9; }
+        .top-bar a:hover { color: var(--brand-light); }
+        .site-header { background: white; box-shadow: var(--shadow); position: sticky; top: 0; z-index: 1000; }
+        .header-main { padding: 15px 0; }
+        .header-content { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+        .site-logo { display: flex; align-items: center; gap: 10px; font-size: 24px; font-weight: 800; color: var(--brand-dark); }
+        .site-logo i { color: var(--brand-light); }
+        .search-bar { flex: 1; max-width: 600px; }
+        .search-bar form { display: flex; border: 2px solid var(--border-color); border-radius: var(--radius); overflow: hidden; }
+        .search-bar select { padding: 12px 15px; border: none; border-right: 1px solid var(--border-color); background: var(--bg-gray); min-width: 150px; }
+        .search-bar input { flex: 1; padding: 12px 15px; border: none; outline: none; }
+        .search-bar button { padding: 12px 20px; background: var(--brand-orange); color: white; }
+        .header-actions { display: flex; gap: 20px; }
+        .header-action { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 12px; padding: 8px; border-radius: var(--radius); }
+        .header-action:hover { background: var(--bg-gray); }
+        .header-action i { font-size: 22px; }
+        .header-action.cart { position: relative; }
+        .cart-count { position: absolute; top: 0; right: 0; background: var(--brand-orange); color: white; font-size: 10px; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .main-nav { border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+        .nav-content { display: flex; align-items: center; }
+        .categories-btn { display: flex; align-items: center; gap: 10px; padding: 12px 20px; background: var(--brand-dark); color: white; font-weight: 600; }
+        .nav-menu { display: flex; flex: 1; }
+        .nav-menu a { display: flex; align-items: center; gap: 5px; padding: 12px 18px; font-size: 13px; font-weight: 500; }
+        .nav-menu a:hover { color: var(--brand-orange); background: var(--bg-gray); }
+        .repair-btn { display: flex; align-items: center; gap: 8px; padding: 10px 20px; background: linear-gradient(135deg, var(--brand-light), #00c4cc); color: var(--brand-dark); font-weight: 700; border-radius: var(--radius); margin-left: auto; }
+
+        /* Breadcrumb */
+        .breadcrumb-nav { background: var(--bg-light-gray); padding: 12px 0; border-bottom: 1px solid var(--border-color); }
+        .breadcrumb { display: flex; align-items: center; gap: 10px; font-size: 13px; }
+        .breadcrumb li { display: flex; align-items: center; gap: 10px; }
+        .breadcrumb li:not(:last-child)::after { content: '/'; color: var(--text-light); }
+        .breadcrumb a { color: var(--text-light); }
+        .breadcrumb a:hover { color: var(--brand-orange); }
+        .breadcrumb .active { color: var(--text-dark); font-weight: 500; }
+
+        /* Shop Header */
+        .shop-header { padding: 30px 0; background: linear-gradient(135deg, var(--brand-dark) 0%, #0a3670 100%); }
+        .shop-header-content { display: flex; align-items: center; justify-content: space-between; }
+        .shop-title h1 { font-size: 28px; font-weight: 700; color: white; display: flex; align-items: center; gap: 12px; margin-bottom: 5px; }
+        .shop-title h1 i { color: var(--brand-light); }
+        .products-count { font-size: 14px; color: rgba(255,255,255,0.7); }
+        .shop-banner { background: var(--brand-orange); padding: 20px 30px; border-radius: var(--radius-lg); }
+        .shop-banner .banner-badge { display: inline-block; background: rgba(255,255,255,0.2); color: white; padding: 3px 10px; border-radius: 15px; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+        .shop-banner h3 { font-size: 18px; font-weight: 700; color: white; margin-bottom: 3px; }
+        .shop-banner p { font-size: 13px; color: rgba(255,255,255,0.9); }
+
+        /* Shop Layout */
+        .shop-content { padding: 30px 0 50px; }
+        .shop-layout { display: grid; grid-template-columns: 280px 1fr; gap: 30px; }
+
+        /* Sidebar */
+        .shop-sidebar { display: flex; flex-direction: column; gap: 25px; }
+        .filter-widget { background: white; border-radius: var(--radius-lg); padding: 20px; border: 1px solid var(--border-color); }
+        .widget-title { font-size: 15px; font-weight: 700; color: var(--brand-dark); margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
+        .widget-title i { color: var(--brand-orange); font-size: 14px; }
+
+        /* Category Filter */
+        .category-filter { display: flex; flex-direction: column; gap: 8px; }
+        .category-filter a { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: var(--radius); font-size: 13px; color: var(--text-dark); transition: var(--transition); }
+        .category-filter a:hover { background: var(--bg-light-gray); color: var(--brand-orange); }
+        .category-filter a.active { background: var(--brand-light); color: var(--brand-dark); font-weight: 600; }
+        .category-filter a i { width: 18px; text-align: center; }
+        .category-filter a span { flex: 1; }
+        .category-filter a .count { font-size: 11px; color: var(--text-light); background: var(--bg-gray); padding: 2px 8px; border-radius: 10px; }
+        .category-filter a.active .count { background: white; color: var(--brand-dark); }
+
+        /* Price Filter */
+        .price-filter { display: flex; flex-direction: column; gap: 15px; }
+        .price-inputs { display: flex; align-items: center; gap: 10px; }
+        .price-inputs .input-group { flex: 1; }
+        .price-inputs .input-group span { display: block; font-size: 11px; color: var(--text-light); margin-bottom: 5px; }
+        .price-inputs input { width: 100%; padding: 8px 12px; border: 1px solid var(--border-color); border-radius: var(--radius); }
+        .price-inputs .separator { color: var(--text-light); margin-top: 15px; }
+        .price-slider input { width: 100%; accent-color: var(--brand-orange); }
+        .btn-filter { padding: 10px 15px; background: var(--brand-dark); color: white; border-radius: var(--radius); font-size: 13px; font-weight: 600; }
+        .btn-filter:hover { background: #0a3670; }
+
+        /* Checkbox */
+        .checkbox-item { display: flex; align-items: center; gap: 10px; padding: 8px 0; font-size: 13px; cursor: pointer; }
+        .checkbox-item input { accent-color: var(--brand-orange); width: 16px; height: 16px; }
+        .checkbox-item .count { margin-left: auto; font-size: 11px; color: var(--text-light); }
+
+        /* Rating Filter */
+        .rating-filter .radio-item { display: flex; align-items: center; gap: 10px; padding: 8px 0; font-size: 13px; cursor: pointer; }
+        .rating-filter input { accent-color: var(--brand-orange); }
+        .rating-filter .stars { color: #ffc107; font-size: 12px; }
+        .rating-filter .count { margin-left: auto; font-size: 11px; color: var(--text-light); }
+
+        .btn-clear-filters { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; background: var(--bg-light-gray); border-radius: var(--radius); font-size: 13px; font-weight: 600; }
+        .btn-clear-filters:hover { background: var(--danger); color: white; }
+
+        /* Shop Main */
+        .shop-main { display: flex; flex-direction: column; gap: 20px; }
+
+        /* Toolbar */
+        .shop-toolbar { display: flex; align-items: center; justify-content: space-between; background: white; padding: 15px 20px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); }
+        .toolbar-left { display: flex; align-items: center; gap: 15px; }
+        .active-filters { display: flex; gap: 8px; }
+        .filter-tag { display: flex; align-items: center; gap: 6px; padding: 5px 12px; background: var(--brand-light); color: var(--brand-dark); border-radius: 15px; font-size: 12px; font-weight: 500; }
+        .filter-tag i { cursor: pointer; font-size: 10px; }
+        .filter-tag i:hover { color: var(--danger); }
+        .toolbar-right { display: flex; align-items: center; gap: 20px; }
+        .sort-by { display: flex; align-items: center; gap: 10px; }
+        .sort-by label { font-size: 13px; color: var(--text-light); }
+        .sort-by select { padding: 8px 15px; border: 1px solid var(--border-color); border-radius: var(--radius); font-size: 13px; cursor: pointer; }
+        .view-toggle { display: flex; gap: 5px; }
+        .view-btn { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: var(--bg-gray); border-radius: var(--radius); color: var(--text-light); }
+        .view-btn:hover, .view-btn.active { background: var(--brand-dark); color: white; }
+
+        /* Products Grid */
+        .products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+        .product-card { background: white; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border-color); position: relative; transition: var(--transition); }
+        .product-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-5px); }
+        .product-badge { position: absolute; top: 10px; left: 10px; padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 15px; z-index: 5; }
+        .product-badge.sale { background: var(--danger); color: white; }
+        .product-badge.new { background: var(--success); color: white; }
+        .product-badge.hot { background: var(--brand-orange); color: white; }
+        .product-image { position: relative; padding: 20px; background: var(--bg-light-gray); text-align: center; height: 180px; display: flex; align-items: center; justify-content: center; }
+        .product-image img { max-height: 140px; object-fit: contain; transition: var(--transition); }
+        .product-card:hover .product-image img { transform: scale(1.05); }
+        .product-actions { position: absolute; top: 10px; right: 10px; display: flex; flex-direction: column; gap: 8px; opacity: 0; transition: var(--transition); }
+        .product-card:hover .product-actions { opacity: 1; }
+        .product-action-btn { width: 35px; height: 35px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; box-shadow: var(--shadow); }
+        .product-action-btn:hover { background: var(--brand-orange); color: white; }
+        .product-info { padding: 15px; }
+        .product-category { font-size: 11px; color: var(--text-light); text-transform: uppercase; margin-bottom: 5px; }
+        .product-title { font-size: 13px; font-weight: 600; margin-bottom: 10px; line-height: 1.4; height: 36px; overflow: hidden; }
+        .product-title:hover { color: var(--brand-orange); }
+        .product-rating { display: flex; align-items: center; gap: 5px; margin-bottom: 10px; }
+        .product-rating .stars { color: #ffc107; font-size: 12px; }
+        .product-rating span { font-size: 11px; color: var(--text-light); }
+        .product-price { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+        .current-price { font-size: 18px; font-weight: 800; color: var(--brand-dark); }
+        .old-price { font-size: 14px; color: var(--text-light); text-decoration: line-through; }
+        .product-footer { display: flex; gap: 8px; }
+        .add-to-cart-btn { flex: 1; padding: 10px 15px; background: var(--brand-orange); color: white; font-size: 12px; font-weight: 600; border-radius: var(--radius); display: flex; align-items: center; justify-content: center; gap: 6px; }
+        .add-to-cart-btn:hover { background: #e55a00; }
+        .quick-view-btn { padding: 10px 12px; background: var(--bg-gray); border-radius: var(--radius); }
+        .quick-view-btn:hover { background: var(--brand-light); color: var(--brand-dark); }
+
+        /* Pagination */
+        .shop-pagination { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; }
+        .pagination { display: flex; gap: 5px; }
+        .pagination li a, .pagination li span { display: flex; align-items: center; justify-content: center; min-width: 40px; height: 40px; padding: 0 12px; background: white; border: 1px solid var(--border-color); border-radius: var(--radius); font-size: 14px; }
+        .pagination li a:hover { border-color: var(--brand-orange); color: var(--brand-orange); }
+        .pagination li.active a { background: var(--brand-orange); border-color: var(--brand-orange); color: white; }
+        .pagination li.disabled a { opacity: 0.5; pointer-events: none; }
+        .pagination li.dots span { border: none; background: none; }
+        .pagination-info { font-size: 13px; color: var(--text-light); }
+
+        /* Footer */
+        .site-footer { background: var(--brand-dark); color: white; padding-top: 50px; margin-top: 30px; }
+        .footer-main { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .footer-logo { display: flex; align-items: center; gap: 10px; font-size: 24px; font-weight: 800; margin-bottom: 15px; }
+        .footer-logo i { color: var(--brand-light); }
+        .footer-desc { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 20px; }
+        .footer-social { display: flex; gap: 10px; }
+        .footer-social a { width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .footer-social a:hover { background: var(--brand-light); color: var(--brand-dark); }
+        .footer-column h4 { font-size: 15px; font-weight: 700; margin-bottom: 20px; color: var(--brand-light); }
+        .footer-column ul { display: flex; flex-direction: column; gap: 12px; }
+        .footer-column a { font-size: 13px; color: rgba(255,255,255,0.7); display: flex; align-items: center; gap: 8px; }
+        .footer-column a:hover { color: var(--brand-light); padding-left: 5px; }
+        .footer-column a i { width: 16px; color: var(--brand-light); }
+        .footer-bottom { padding: 20px 0; display: flex; justify-content: space-between; }
+        .footer-copyright { font-size: 13px; color: rgba(255,255,255,0.6); }
+
+        /* WhatsApp */
+        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; color: white; box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); z-index: 1000; }
+        .whatsapp-float:hover { transform: scale(1.1); }
+
+        @media (max-width: 1200px) { .products-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 992px) {
+            .shop-layout { grid-template-columns: 1fr; }
+            .shop-sidebar { display: none; }
+            .products-grid { grid-template-columns: repeat(3, 1fr); }
+            .footer-main { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .header-content { flex-wrap: wrap; }
+            .search-bar { order: 3; max-width: 100%; width: 100%; }
+            .nav-menu { display: none; }
+            .shop-header-content { flex-direction: column; gap: 20px; text-align: center; }
+            .products-grid { grid-template-columns: repeat(2, 1fr); }
+            .shop-toolbar { flex-direction: column; gap: 15px; }
+            .footer-main { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Top Bar -->
+<div class="top-bar">
+    <div class="container">
+        <div class="top-bar-content">
+            <div class="top-bar-left">
+                <a href="tel:602861227"><i class="fas fa-phone-alt"></i> 602 861 227</a>
+                <a href="mailto:contact@electromti.com"><i class="fas fa-envelope"></i> contact@electromti.com</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Header -->
+<header class="site-header">
+    <div class="header-main">
+        <div class="container">
+            <div class="header-content">
+                <a href="electromti-preview.html" class="site-logo"><i class="fas fa-bolt"></i><span>ELECTROMTI</span></a>
+                <div class="search-bar">
+                    <form>
+                        <select><option>Todas las categorías</option></select>
+                        <input type="text" placeholder="Buscar productos...">
+                        <button type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+                <div class="header-actions">
+                    <a href="#" class="header-action"><i class="fas fa-user"></i><span>Mi cuenta</span></a>
+                    <a href="#" class="header-action cart"><i class="fas fa-shopping-cart"></i><span>Mi cesta</span><span class="cart-count">0</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="main-nav">
+        <div class="container">
+            <div class="nav-content">
+                <button class="categories-btn"><i class="fas fa-bars"></i> Categorías</button>
+                <ul class="nav-menu">
+                    <li><a href="#">Ofertas <i class="fas fa-fire" style="color:#ff6b00"></i></a></li>
+                    <li><a href="#">Móviles</a></li>
+                    <li><a href="#">Portátiles</a></li>
+                    <li><a href="#">Electrodomésticos</a></li>
+                </ul>
+                <a href="#" class="repair-btn"><i class="fas fa-tools"></i> Reparación</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Breadcrumb -->
+<nav class="breadcrumb-nav">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="electromti-preview.html"><i class="fas fa-home"></i></a></li>
+            <li class="active">Tienda</li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Shop Header -->
+<section class="shop-header">
+    <div class="container">
+        <div class="shop-header-content">
+            <div class="shop-title">
+                <h1><i class="fas fa-store"></i> Todos los productos</h1>
+                <span class="products-count">156 productos encontrados</span>
+            </div>
+            <div class="shop-banner">
+                <span class="banner-badge">OFERTAS</span>
+                <h3>Hasta 40% de descuento</h3>
+                <p>En productos seleccionados</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Shop Content -->
+<section class="shop-content">
+    <div class="container">
+        <div class="shop-layout">
+            <!-- Sidebar -->
+            <aside class="shop-sidebar">
+                <div class="filter-widget">
+                    <h3 class="widget-title"><i class="fas fa-list"></i> Categorías</h3>
+                    <ul class="category-filter">
+                        <li><a href="#" class="active"><span>Todas</span><span class="count">156</span></a></li>
+                        <li><a href="#"><i class="fas fa-mobile-alt"></i><span>Móviles</span><span class="count">45</span></a></li>
+                        <li><a href="#"><i class="fas fa-laptop"></i><span>Portátiles</span><span class="count">32</span></a></li>
+                        <li><a href="#"><i class="fas fa-tablet-alt"></i><span>Tablets</span><span class="count">18</span></a></li>
+                        <li><a href="#"><i class="fas fa-tv"></i><span>Televisores</span><span class="count">24</span></a></li>
+                        <li><a href="#"><i class="fas fa-blender"></i><span>Electrodomésticos</span><span class="count">28</span></a></li>
+                        <li><a href="#"><i class="fas fa-headphones"></i><span>Accesorios</span><span class="count">9</span></a></li>
+                    </ul>
+                </div>
+
+                <div class="filter-widget">
+                    <h3 class="widget-title"><i class="fas fa-euro-sign"></i> Precio</h3>
+                    <div class="price-filter">
+                        <div class="price-inputs">
+                            <div class="input-group"><span>Min</span><input type="number" value="0"></div>
+                            <span class="separator">-</span>
+                            <div class="input-group"><span>Max</span><input type="number" value="2000"></div>
+                        </div>
+                        <div class="price-slider"><input type="range" min="0" max="2000" value="2000"></div>
+                        <button class="btn-filter">Aplicar filtro</button>
+                    </div>
+                </div>
+
+                <div class="filter-widget">
+                    <h3 class="widget-title"><i class="fas fa-tag"></i> Marca</h3>
+                    <div class="brand-filter">
+                        <label class="checkbox-item"><input type="checkbox" checked> Apple<span class="count">(45)</span></label>
+                        <label class="checkbox-item"><input type="checkbox" checked> Samsung<span class="count">(38)</span></label>
+                        <label class="checkbox-item"><input type="checkbox"> Xiaomi<span class="count">(52)</span></label>
+                        <label class="checkbox-item"><input type="checkbox"> Sony<span class="count">(23)</span></label>
+                        <label class="checkbox-item"><input type="checkbox"> LG<span class="count">(31)</span></label>
+                    </div>
+                </div>
+
+                <div class="filter-widget">
+                    <h3 class="widget-title"><i class="fas fa-star"></i> Valoración</h3>
+                    <div class="rating-filter">
+                        <label class="radio-item"><input type="radio" name="rating"><span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span><span class="count">(56)</span></label>
+                        <label class="radio-item"><input type="radio" name="rating"><span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></span> y más<span class="count">(89)</span></label>
+                    </div>
+                </div>
+
+                <button class="btn-clear-filters"><i class="fas fa-times"></i> Limpiar filtros</button>
+            </aside>
+
+            <!-- Main Content -->
+            <div class="shop-main">
+                <div class="shop-toolbar">
+                    <div class="toolbar-left">
+                        <div class="active-filters">
+                            <span class="filter-tag">Apple <i class="fas fa-times"></i></span>
+                            <span class="filter-tag">Samsung <i class="fas fa-times"></i></span>
+                        </div>
+                    </div>
+                    <div class="toolbar-right">
+                        <div class="sort-by">
+                            <label>Ordenar:</label>
+                            <select>
+                                <option>Más populares</option>
+                                <option>Precio: menor a mayor</option>
+                                <option>Precio: mayor a menor</option>
+                                <option>Mejor valorados</option>
+                            </select>
+                        </div>
+                        <div class="view-toggle">
+                            <button class="view-btn active"><i class="fas fa-th"></i></button>
+                            <button class="view-btn"><i class="fas fa-list"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="products-grid">
+                    <!-- Product 1 -->
+                    <div class="product-card">
+                        <span class="product-badge sale">-14%</span>
+                        <div class="product-image">
+                            <a href="product-preview.html"><img src="https://via.placeholder.com/300x300/f5f5f5/333333?text=iPhone+15" alt=""></a>
+                            <div class="product-actions">
+                                <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                                <button class="product-action-btn"><i class="fas fa-eye"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">MÓVILES</span>
+                            <h3 class="product-title"><a href="product-preview.html">iPhone 15 Pro Max 256GB</a></h3>
+                            <div class="product-rating"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><span>(128)</span></div>
+                            <div class="product-price"><span class="current-price">1.199,00€</span><span class="old-price">1.399,00€</span></div>
+                            <div class="product-footer"><button class="add-to-cart-btn"><i class="fas fa-shopping-cart"></i> Añadir</button><button class="quick-view-btn"><i class="fas fa-eye"></i></button></div>
+                        </div>
+                    </div>
+
+                    <!-- Product 2 -->
+                    <div class="product-card">
+                        <span class="product-badge hot">TOP</span>
+                        <div class="product-image">
+                            <a href="product-preview.html"><img src="https://via.placeholder.com/300x300/f5f5f5/333333?text=Galaxy+S24" alt=""></a>
+                            <div class="product-actions">
+                                <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                                <button class="product-action-btn"><i class="fas fa-eye"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">MÓVILES</span>
+                            <h3 class="product-title">Samsung Galaxy S24 Ultra 512GB</h3>
+                            <div class="product-rating"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><span>(95)</span></div>
+                            <div class="product-price"><span class="current-price">1.099,00€</span><span class="old-price">1.299,00€</span></div>
+                            <div class="product-footer"><button class="add-to-cart-btn"><i class="fas fa-shopping-cart"></i> Añadir</button><button class="quick-view-btn"><i class="fas fa-eye"></i></button></div>
+                        </div>
+                    </div>
+
+                    <!-- Product 3 -->
+                    <div class="product-card">
+                        <span class="product-badge new">NUEVO</span>
+                        <div class="product-image">
+                            <a href="#"><img src="https://via.placeholder.com/300x300/f5f5f5/333333?text=MacBook" alt=""></a>
+                            <div class="product-actions">
+                                <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                                <button class="product-action-btn"><i class="fas fa-eye"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">PORTÁTILES</span>
+                            <h3 class="product-title">MacBook Air M3 13" 256GB</h3>
+                            <div class="product-rating"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><span>(67)</span></div>
+                            <div class="product-price"><span class="current-price">1.099,00€</span><span class="old-price">1.249,00€</span></div>
+                            <div class="product-footer"><button class="add-to-cart-btn"><i class="fas fa-shopping-cart"></i> Añadir</button><button class="quick-view-btn"><i class="fas fa-eye"></i></button></div>
+                        </div>
+                    </div>
+
+                    <!-- Product 4 -->
+                    <div class="product-card">
+                        <span class="product-badge sale">-20%</span>
+                        <div class="product-image">
+                            <a href="#"><img src="https://via.placeholder.com/300x300/f5f5f5/333333?text=iPad+Pro" alt=""></a>
+                            <div class="product-actions">
+                                <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                                <button class="product-action-btn"><i class="fas fa-eye"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">TABLETS</span>
+                            <h3 class="product-title">iPad Pro 12.9" M2 128GB</h3>
+                            <div class="product-rating"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div><span>(43)</span></div>
+                            <div class="product-price"><span class="current-price">1.149,00€</span><span class="old-price">1.329,00€</span></div>
+                            <div class="product-footer"><button class="add-to-cart-btn"><i class="fas fa-shopping-cart"></i> Añadir</button><button class="quick-view-btn"><i class="fas fa-eye"></i></button></div>
+                        </div>
+                    </div>
+
+                    <!-- Product 5 -->
+                    <div class="product-card">
+                        <span class="product-badge hot">TOP</span>
+                        <div class="product-image">
+                            <a href="#"><img src="https://via.placeholder.com/300x300/f5f5f5/333333?text=AirPods" alt=""></a>
+                            <div class="product-actions">
+                                <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                                <button class="product-action-btn"><i class="fas fa-eye"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">ACCESORIOS</span>
+                            <h3 class="product-title">AirPods Pro 2ª Generación</h3>
+                            <div class="product-rating"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div><span>(210)</span></div>
+                            <div class="product-price"><span class="current-price">229,00€</span><span class="old-price">279,00€</span></div>
+                            <div class="product-footer"><button class="add-to-cart-btn"><i class="fas fa-shopping-cart"></i> Añadir</button><button class="quick-view-btn"><i class="fas fa-eye"></i></button></div>
+                        </div>
+                    </div>
+
+                    <!-- Product 6 -->
+                    <div class="product-card">
+                        <span class="product-badge sale">-15%</span>
+                        <div class="product-image">
+                            <a href="#"><img src="https://via.placeholder.com/300x300/f5f5f5/333333?text=Xiaomi" alt=""></a>
+                            <div class="product-actions">
+                                <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                                <button class="product-action-btn"><i class="fas fa-eye"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">MÓVILES</span>
+                            <h3 class="product-title">Xiaomi Redmi Note 13 Pro 256GB</h3>
+                            <div class="product-rating"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div><span>(156)</span></div>
+                            <div class="product-price"><span class="current-price">299,00€</span><span class="old-price">349,00€</span></div>
+                            <div class="product-footer"><button class="add-to-cart-btn"><i class="fas fa-shopping-cart"></i> Añadir</button><button class="quick-view-btn"><i class="fas fa-eye"></i></button></div>
+                        </div>
+                    </div>
+
+                    <!-- Product 7 -->
+                    <div class="product-card">
+                        <span class="product-badge sale">-22%</span>
+                        <div class="product-image">
+                            <a href="#"><img src="https://via.placeholder.com/300x300/f5f5f5/333333?text=TV+Samsung" alt=""></a>
+                            <div class="product-actions">
+                                <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                                <button class="product-action-btn"><i class="fas fa-eye"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">TELEVISORES</span>
+                            <h3 class="product-title">Samsung Smart TV 55" 4K QLED</h3>
+                            <div class="product-rating"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div><span>(78)</span></div>
+                            <div class="product-price"><span class="current-price">699,00€</span><span class="old-price">899,00€</span></div>
+                            <div class="product-footer"><button class="add-to-cart-btn"><i class="fas fa-shopping-cart"></i> Añadir</button><button class="quick-view-btn"><i class="fas fa-eye"></i></button></div>
+                        </div>
+                    </div>
+
+                    <!-- Product 8 -->
+                    <div class="product-card">
+                        <span class="product-badge hot">TOP</span>
+                        <div class="product-image">
+                            <a href="#"><img src="https://via.placeholder.com/300x300/f5f5f5/333333?text=Dyson" alt=""></a>
+                            <div class="product-actions">
+                                <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                                <button class="product-action-btn"><i class="fas fa-eye"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">ELECTRODOMÉSTICOS</span>
+                            <h3 class="product-title">Dyson V15 Detect Absolute</h3>
+                            <div class="product-rating"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><span>(89)</span></div>
+                            <div class="product-price"><span class="current-price">599,00€</span><span class="old-price">749,00€</span></div>
+                            <div class="product-footer"><button class="add-to-cart-btn"><i class="fas fa-shopping-cart"></i> Añadir</button><button class="quick-view-btn"><i class="fas fa-eye"></i></button></div>
+                        </div>
+                    </div>
+                </div>
+
+                <nav class="shop-pagination">
+                    <ul class="pagination">
+                        <li class="disabled"><a href="#"><i class="fas fa-chevron-left"></i></a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li class="dots"><span>...</span></li>
+                        <li><a href="#">12</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i></a></li>
+                    </ul>
+                    <div class="pagination-info">Mostrando 1-8 de 156 productos</div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-main">
+            <div>
+                <div class="footer-logo"><i class="fas fa-bolt"></i> ELECTROMTI</div>
+                <p class="footer-desc">Tu tienda de confianza para móviles, electrónica y electrodomésticos.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Productos</h4>
+                <ul>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Móviles</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Portátiles</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Tablets</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Servicios</h4>
+                <ul>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Reparación</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Mayoristas</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Contacto</h4>
+                <ul>
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> Torre Pacheco, Murcia</a></li>
+                    <li><a href="#"><i class="fas fa-phone"></i> 602 861 227</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copyright">&copy; 2024 ElectroMTI. Todos los derechos reservados.</span>
+        </div>
+    </div>
+</footer>
+
+<a href="https://wa.me/34602861227" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+
+<script>
+    // Add to cart
+    const cartBtns = document.querySelectorAll('.add-to-cart-btn');
+    const cartCount = document.querySelector('.cart-count');
+    let count = 0;
+    cartBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            count++;
+            cartCount.textContent = count;
+            btn.innerHTML = '<i class="fas fa-check"></i> Añadido';
+            setTimeout(() => btn.innerHTML = '<i class="fas fa-shopping-cart"></i> Añadir', 2000);
+        });
+    });
+
+    // Category filter
+    document.querySelectorAll('.category-filter a').forEach(a => {
+        a.addEventListener('click', e => {
+            e.preventDefault();
+            document.querySelectorAll('.category-filter a').forEach(x => x.classList.remove('active'));
+            a.classList.add('active');
+        });
+    });
+
+    // View toggle
+    document.querySelectorAll('.view-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        });
+    });
+</script>
+
+</body>
+</html>

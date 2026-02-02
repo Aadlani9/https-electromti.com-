@@ -11,65 +11,37 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
-<!-- Top Bar -->
-<div class="top-bar">
-    <div class="container">
-        <div class="top-bar-content">
-            <div class="top-bar-left">
-                <a href="tel:<?php echo esc_attr(electromti_get_option('phone_1', '602861227')); ?>">
-                    <i class="fas fa-phone-alt"></i> <?php echo esc_html(electromti_get_option('phone_1', '602 861 227')); ?>
-                </a>
-                <a href="mailto:<?php echo esc_attr(electromti_get_option('contact_email', 'contact@electromti.com')); ?>">
-                    <i class="fas fa-envelope"></i> <?php echo esc_html(electromti_get_option('contact_email', 'contact@electromti.com')); ?>
-                </a>
-                <span>
-                    <i class="fas fa-map-marker-alt"></i> <?php echo esc_html(electromti_get_option('store_address', 'Avenida Estación, 42 - Torre Pacheco, Murcia')); ?>
-                </span>
-            </div>
-            <div class="top-bar-right">
-                <a href="#"><i class="fas fa-truck"></i> Envío gratis +50€</a>
-                <a href="#"><i class="fas fa-undo"></i> Devoluciones 14 días</a>
-                <a href="#"><i class="fas fa-shield-alt"></i> Pago seguro</a>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- Header -->
 <header class="site-header">
     <div class="header-main">
         <div class="container">
             <div class="header-content">
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="<?php _e('Abrir menú', 'electromti'); ?>">
+                    <i class="fas fa-bars"></i>
+                </button>
+
                 <!-- Logo -->
                 <a href="<?php echo esc_url(home_url('/')); ?>" class="site-logo">
-                    <i class="fas fa-bolt"></i>
-                    <span>ELECTROMTI</span>
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.svg" alt="ElectroMTI" class="logo-image">
+                    <span class="logo-text">ELECTROMTI</span>
                 </a>
 
-                <!-- Search Bar -->
-                <div class="search-bar">
-                    <form action="<?php echo esc_url(home_url('/')); ?>" method="get">
-                        <select name="product_cat">
-                            <option value=""><?php _e('Todas las categorías', 'electromti'); ?></option>
-                            <option value="moviles"><?php _e('Móviles', 'electromti'); ?></option>
-                            <option value="portatiles"><?php _e('Portátiles', 'electromti'); ?></option>
-                            <option value="tablets"><?php _e('Tablets', 'electromti'); ?></option>
-                            <option value="televisores"><?php _e('Televisores', 'electromti'); ?></option>
-                            <option value="electrodomesticos"><?php _e('Electrodomésticos', 'electromti'); ?></option>
-                            <option value="accesorios"><?php _e('Accesorios', 'electromti'); ?></option>
-                        </select>
-                        <input type="text" name="s" placeholder="<?php _e('Buscar productos...', 'electromti'); ?>" value="<?php echo get_search_query(); ?>">
-                        <input type="hidden" name="post_type" value="product">
-                        <button type="submit"><i class="fas fa-search"></i></button>
-                    </form>
+                <!-- Search Bar (Desktop) -->
+                <div class="search-bar desktop-search">
+                    <button type="button" class="search-trigger" id="searchTrigger">
+                        <span class="search-placeholder"><?php _e('Buscar', 'electromti'); ?></span>
+                        <i class="fas fa-search"></i>
+                    </button>
                 </div>
+
+                <!-- Search Bar (Mobile) - Click to open panel -->
+                <button class="mobile-search-btn" id="mobileSearchBtn" aria-label="<?php _e('Buscar', 'electromti'); ?>">
+                    <i class="fas fa-search"></i>
+                </button>
 
                 <!-- Header Actions -->
                 <div class="header-actions">
-                    <a href="#" class="header-action" title="<?php _e('Buscar con IA', 'electromti'); ?>">
-                        <i class="fas fa-microphone"></i>
-                        <span><?php _e('Buscar con IA', 'electromti'); ?></span>
-                    </a>
                     <a href="<?php echo esc_url(wp_login_url()); ?>" class="header-action">
                         <i class="fas fa-user"></i>
                         <span><?php _e('Mi cuenta', 'electromti'); ?></span>
@@ -84,8 +56,15 @@
         </div>
     </div>
 
-    <!-- Navigation -->
-    <nav class="main-nav">
+    <!-- Tagline Bar -->
+    <div class="tagline-bar">
+        <div class="container">
+            <span class="tagline-text"><strong><?php _e('Expertos en tecnología', 'electromti'); ?></strong> <?php _e('con un servicio 5 estrellas', 'electromti'); ?></span>
+        </div>
+    </div>
+
+    <!-- Navigation (Desktop Only) -->
+    <nav class="main-nav desktop-nav">
         <div class="container">
             <div class="nav-content">
                 <!-- Categories Button -->
@@ -154,7 +133,7 @@
                     </li>
                 </ul>
 
-                <!-- Repair Button -->
+                <!-- Repair Button (Desktop) -->
                 <?php if (electromti_get_option('repair_enabled', true)) : ?>
                 <a href="<?php echo esc_url(electromti_get_option('repair_url', '#repair')); ?>" class="repair-btn">
                     <i class="fas fa-tools"></i>
@@ -165,6 +144,37 @@
         </div>
     </nav>
 </header>
+
+<!-- Search Panel (Full Screen) -->
+<div class="search-panel" id="searchPanel" aria-hidden="true">
+    <div class="search-panel-header">
+        <button class="search-panel-back" id="searchPanelBack" aria-label="<?php _e('Volver', 'electromti'); ?>">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <form class="search-panel-form" action="<?php echo esc_url(home_url('/')); ?>" method="get" role="search">
+            <input type="text" name="s" id="searchPanelInput" placeholder="<?php _e('Buscar', 'electromti'); ?>" autocomplete="off">
+            <input type="hidden" name="post_type" value="product">
+            <button type="submit" class="search-panel-submit" aria-label="<?php _e('Buscar', 'electromti'); ?>">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+    </div>
+    <div class="search-panel-content">
+        <h3 class="search-suggestions-title"><?php _e('LO MÁS BUSCADO', 'electromti'); ?></h3>
+        <ul class="search-suggestions">
+            <li><a href="?s=iphone&post_type=product">iphone</a></li>
+            <li><a href="?s=samsung&post_type=product">samsung</a></li>
+            <li><a href="?s=portatil&post_type=product">portátil</a></li>
+            <li><a href="?s=tablet&post_type=product">tablet</a></li>
+            <li><a href="?s=televisor&post_type=product">televisor</a></li>
+            <li><a href="?s=auriculares&post_type=product">auriculares</a></li>
+            <li><a href="?s=xiaomi&post_type=product">xiaomi</a></li>
+            <li><a href="?s=macbook&post_type=product">macbook</a></li>
+            <li><a href="?s=lavadora&post_type=product">lavadora</a></li>
+            <li><a href="?s=frigorifico&post_type=product">frigorífico</a></li>
+        </ul>
+    </div>
+</div>
 
 <!-- Mobile Menu Panel -->
 <aside class="mobile-menu-panel" id="mobileMenuPanel" aria-hidden="true">

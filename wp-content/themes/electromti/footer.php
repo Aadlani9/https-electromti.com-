@@ -113,10 +113,10 @@
                 &copy; <?php echo date('Y'); ?> <strong>ElectroMTI</strong>. <?php _e('Todos los derechos reservados.', 'electromti'); ?>
             </div>
             <div class="footer-payments">
-                <img src="https://via.placeholder.com/50x30/ffffff/333333?text=Visa" alt="Visa">
-                <img src="https://via.placeholder.com/50x30/ffffff/333333?text=MC" alt="MasterCard">
-                <img src="https://via.placeholder.com/50x30/ffffff/333333?text=PayPal" alt="PayPal">
-                <img src="https://via.placeholder.com/50x30/ffffff/333333?text=Bizum" alt="Bizum">
+                <img src="https://placehold.co/50x30/ffffff/333333?text=Visa" alt="Visa">
+                <img src="https://placehold.co/50x30/ffffff/333333?text=MC" alt="MasterCard">
+                <img src="https://placehold.co/50x30/ffffff/333333?text=PayPal" alt="PayPal">
+                <img src="https://placehold.co/50x30/ffffff/333333?text=Bizum" alt="Bizum">
             </div>
         </div>
     </div>

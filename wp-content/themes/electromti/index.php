@@ -33,7 +33,7 @@ $categories = electromti_get_categories();
                             </a>
                         </div>
                         <div class="slide-image">
-                            <img src="https://via.placeholder.com/400x400/f5f5f5/333333?text=iPhone+15+Pro" alt="iPhone 15 Pro Max">
+                            <img src="https://placehold.co/400x400/f5f5f5/333333?text=iPhone+15+Pro" alt="iPhone 15 Pro Max">
                         </div>
                     </div>
                 </div>
@@ -53,7 +53,7 @@ $categories = electromti_get_categories();
                             </a>
                         </div>
                         <div class="slide-image">
-                            <img src="https://via.placeholder.com/400x400/f5f5f5/333333?text=Galaxy+S24" alt="Samsung Galaxy S24">
+                            <img src="https://placehold.co/400x400/f5f5f5/333333?text=Galaxy+S24" alt="Samsung Galaxy S24">
                         </div>
                     </div>
                 </div>
@@ -73,7 +73,7 @@ $categories = electromti_get_categories();
                             </a>
                         </div>
                         <div class="slide-image">
-                            <img src="https://via.placeholder.com/400x400/f5f5f5/333333?text=Electrodomesticos" alt="Electrodomésticos">
+                            <img src="https://placehold.co/400x400/f5f5f5/333333?text=Electrodomesticos" alt="Electrodomésticos">
                         </div>
                     </div>
                 </div>
@@ -343,22 +343,22 @@ $categories = electromti_get_categories();
         </div>
         <div class="brands-slider">
             <div class="brand-item">
-                <img src="https://via.placeholder.com/120x50/ffffff/333333?text=Apple" alt="Apple">
+                <img src="https://placehold.co/120x50/ffffff/333333?text=Apple" alt="Apple">
             </div>
             <div class="brand-item">
-                <img src="https://via.placeholder.com/120x50/ffffff/333333?text=Samsung" alt="Samsung">
+                <img src="https://placehold.co/120x50/ffffff/333333?text=Samsung" alt="Samsung">
             </div>
             <div class="brand-item">
-                <img src="https://via.placeholder.com/120x50/ffffff/333333?text=Xiaomi" alt="Xiaomi">
+                <img src="https://placehold.co/120x50/ffffff/333333?text=Xiaomi" alt="Xiaomi">
             </div>
             <div class="brand-item">
-                <img src="https://via.placeholder.com/120x50/ffffff/333333?text=Sony" alt="Sony">
+                <img src="https://placehold.co/120x50/ffffff/333333?text=Sony" alt="Sony">
             </div>
             <div class="brand-item">
-                <img src="https://via.placeholder.com/120x50/ffffff/333333?text=LG" alt="LG">
+                <img src="https://placehold.co/120x50/ffffff/333333?text=LG" alt="LG">
             </div>
             <div class="brand-item">
-                <img src="https://via.placeholder.com/120x50/ffffff/333333?text=Dyson" alt="Dyson">
+                <img src="https://placehold.co/120x50/ffffff/333333?text=Dyson" alt="Dyson">
             </div>
         </div>
     </div>

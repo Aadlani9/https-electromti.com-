@@ -1,0 +1,2045 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElectroMTI - Tu tienda de electrónica</title>
+    <meta name="description" content="ElectroMTI - Los mejores móviles y electrónicos a precios excepcionales. Venta al por mayor y menor en Torre Pacheco, Murcia.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        /* ===== CSS Variables ===== */
+        :root {
+            --brand-dark: #072553;
+            --brand-light: #14e6f4;
+            --brand-orange: #ff6b00;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --bg-white: #ffffff;
+            --bg-gray: #f5f5f5;
+            --bg-light-gray: #fafafa;
+            --border-color: #e0e0e0;
+            --success: #28a745;
+            --danger: #dc3545;
+            --warning: #ffc107;
+            --shadow: 0 2px 8px rgba(0,0,0,0.1);
+            --shadow-hover: 0 4px 16px rgba(0,0,0,0.15);
+            --radius: 8px;
+            --radius-lg: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        /* ===== Reset & Base ===== */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-white);
+            color: var(--text-dark);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        ul, ol {
+            list-style: none;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: inherit;
+        }
+
+        /* ===== Container ===== */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* ===== Top Bar ===== */
+        .top-bar {
+            background: var(--brand-dark);
+            color: white;
+            padding: 8px 0;
+            font-size: 12px;
+        }
+
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .top-bar-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .top-bar-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .top-bar a, .top-bar span {
+            color: white;
+            opacity: 0.9;
+        }
+
+        .top-bar a:hover {
+            opacity: 1;
+            color: var(--brand-light);
+        }
+
+        /* ===== Header ===== */
+        .site-header {
+            background: var(--bg-white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-main {
+            padding: 15px 0;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        /* Logo */
+        .site-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--brand-dark);
+        }
+
+        .site-logo i {
+            color: var(--brand-light);
+            font-size: 28px;
+        }
+
+        .site-logo span {
+            letter-spacing: 1px;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            flex: 1;
+            max-width: 600px;
+            position: relative;
+        }
+
+        .search-bar form {
+            display: flex;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .search-bar form:focus-within {
+            border-color: var(--brand-light);
+            box-shadow: 0 0 0 3px rgba(20, 230, 244, 0.1);
+        }
+
+        .search-bar select {
+            padding: 12px 15px;
+            border: none;
+            border-right: 1px solid var(--border-color);
+            background: var(--bg-gray);
+            font-size: 13px;
+            color: var(--text-dark);
+            cursor: pointer;
+            min-width: 150px;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .search-bar button {
+            padding: 12px 20px;
+            background: var(--brand-orange);
+            color: white;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .search-bar button:hover {
+            background: #e55a00;
+        }
+
+        /* Header Actions */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-action {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: var(--text-dark);
+            font-size: 12px;
+            padding: 8px;
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .header-action:hover {
+            background: var(--bg-gray);
+            color: var(--brand-dark);
+        }
+
+        .header-action i {
+            font-size: 22px;
+        }
+
+        .header-action.cart {
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--brand-orange);
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== Navigation ===== */
+        .main-nav {
+            background: var(--bg-white);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-content {
+            display: flex;
+            align-items: center;
+            gap: 0;
+        }
+
+        .categories-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            background: var(--brand-dark);
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .categories-btn:hover {
+            background: #0a3670;
+        }
+
+        .categories-btn i {
+            font-size: 16px;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+
+        .nav-menu li {
+            position: relative;
+        }
+
+        .nav-menu > li > a {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 12px 18px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-dark);
+            transition: var(--transition);
+        }
+
+        .nav-menu > li > a:hover {
+            color: var(--brand-orange);
+            background: var(--bg-gray);
+        }
+
+        .nav-menu > li > a i {
+            font-size: 11px;
+        }
+
+        /* Repair Button */
+        .repair-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, var(--brand-light), #00c4cc);
+            color: var(--brand-dark);
+            font-weight: 700;
+            font-size: 13px;
+            border-radius: var(--radius);
+            margin-left: auto;
+            transition: var(--transition);
+            box-shadow: 0 2px 8px rgba(20, 230, 244, 0.3);
+        }
+
+        .repair-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(20, 230, 244, 0.4);
+        }
+
+        .repair-btn i {
+            font-size: 16px;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 220px;
+            background: var(--bg-white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-hover);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+            z-index: 100;
+            border: 1px solid var(--border-color);
+        }
+
+        .nav-menu li:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 15px;
+            font-size: 13px;
+            color: var(--text-dark);
+            border-bottom: 1px solid var(--bg-gray);
+        }
+
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--bg-gray);
+            color: var(--brand-orange);
+        }
+
+        /* ===== Hero Slider ===== */
+        .hero-slider {
+            padding: 20px 0;
+            background: var(--bg-light-gray);
+        }
+
+        .slider-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 15px;
+        }
+
+        .main-slider {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            background: var(--brand-dark);
+        }
+
+        .slide {
+            display: none;
+            position: relative;
+        }
+
+        .slide.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .slide-content {
+            position: relative;
+            padding: 40px;
+            min-height: 350px;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--brand-dark) 0%, #0a3670 100%);
+        }
+
+        .slide-text {
+            max-width: 50%;
+            color: white;
+            z-index: 2;
+        }
+
+        .slide-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: var(--brand-orange);
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 20px;
+            margin-bottom: 15px;
+        }
+
+        .slide-title {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .slide-desc {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .slide-price {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--brand-light);
+            margin-bottom: 20px;
+        }
+
+        .slide-price .old-price {
+            font-size: 18px;
+            color: rgba(255,255,255,0.5);
+            text-decoration: line-through;
+            margin-left: 10px;
+            font-weight: 400;
+        }
+
+        .slide-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 25px;
+            background: var(--brand-orange);
+            color: white;
+            font-weight: 600;
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .slide-btn:hover {
+            background: #e55a00;
+            transform: translateX(5px);
+        }
+
+        .slide-image {
+            position: absolute;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            max-width: 45%;
+            z-index: 1;
+        }
+
+        .slide-image img {
+            max-height: 280px;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
+        }
+
+        /* Slider Controls */
+        .slider-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 40px;
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .slider-dot.active {
+            background: var(--brand-light);
+            transform: scale(1.2);
+        }
+
+        .slider-dot:hover {
+            background: rgba(255,255,255,0.7);
+        }
+
+        /* Side Banners */
+        .side-banners {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .side-banner {
+            flex: 1;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .side-banner:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .side-banner.orange {
+            background: linear-gradient(135deg, var(--brand-orange) 0%, #ff8533 100%);
+        }
+
+        .side-banner.cyan {
+            background: linear-gradient(135deg, var(--brand-light) 0%, #00d4aa 100%);
+        }
+
+        .side-banner-content {
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+
+        .side-banner-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            background: rgba(255,255,255,0.2);
+            font-size: 11px;
+            font-weight: 700;
+            border-radius: 15px;
+            margin-bottom: 10px;
+        }
+
+        .side-banner h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .side-banner p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        /* ===== Categories Section ===== */
+        .categories-section {
+            padding: 40px 0;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--brand-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: var(--brand-orange);
+        }
+
+        .view-all {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--brand-orange);
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .view-all:hover {
+            gap: 10px;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 15px;
+        }
+
+        .category-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 20px 15px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .category-card:hover {
+            border-color: var(--brand-light);
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-3px);
+        }
+
+        .category-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 15px;
+            background: var(--bg-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: var(--brand-dark);
+            transition: var(--transition);
+        }
+
+        .category-card:hover .category-icon {
+            background: var(--brand-light);
+            color: var(--brand-dark);
+        }
+
+        .category-card h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+
+        .category-card span {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        /* ===== Products Section ===== */
+        .products-section {
+            padding: 40px 0;
+            background: var(--bg-light-gray);
+        }
+
+        .products-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-light);
+            border-radius: var(--radius) var(--radius) 0 0;
+            transition: var(--transition);
+        }
+
+        .tab-btn:hover {
+            color: var(--brand-dark);
+        }
+
+        .tab-btn.active {
+            color: var(--brand-orange);
+            background: var(--bg-white);
+            border-bottom: 2px solid var(--brand-orange);
+            margin-bottom: -12px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+        }
+
+        /* Product Card */
+        .product-card {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .product-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-5px);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 4px 10px;
+            font-size: 11px;
+            font-weight: 700;
+            border-radius: 15px;
+            z-index: 5;
+        }
+
+        .product-badge.sale {
+            background: var(--danger);
+            color: white;
+        }
+
+        .product-badge.new {
+            background: var(--success);
+            color: white;
+        }
+
+        .product-badge.hot {
+            background: var(--brand-orange);
+            color: white;
+        }
+
+        .product-image {
+            position: relative;
+            padding: 20px;
+            background: var(--bg-light-gray);
+            text-align: center;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-image img {
+            max-height: 140px;
+            object-fit: contain;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-actions {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-actions {
+            opacity: 1;
+        }
+
+        .product-action-btn {
+            width: 35px;
+            height: 35px;
+            background: var(--bg-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: var(--text-dark);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .product-action-btn:hover {
+            background: var(--brand-orange);
+            color: white;
+        }
+
+        .product-info {
+            padding: 15px;
+        }
+
+        .product-category {
+            font-size: 11px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .product-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            line-height: 1.4;
+            height: 36px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .product-title:hover {
+            color: var(--brand-orange);
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .product-rating .stars {
+            color: #ffc107;
+            font-size: 12px;
+        }
+
+        .product-rating span {
+            font-size: 11px;
+            color: var(--text-light);
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .current-price {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--brand-dark);
+        }
+
+        .old-price {
+            font-size: 14px;
+            color: var(--text-light);
+            text-decoration: line-through;
+        }
+
+        .product-footer {
+            display: flex;
+            gap: 8px;
+        }
+
+        .add-to-cart-btn {
+            flex: 1;
+            padding: 10px 15px;
+            background: var(--brand-orange);
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: var(--transition);
+        }
+
+        .add-to-cart-btn:hover {
+            background: #e55a00;
+        }
+
+        .quick-view-btn {
+            padding: 10px 12px;
+            background: var(--bg-gray);
+            color: var(--text-dark);
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .quick-view-btn:hover {
+            background: var(--brand-light);
+            color: var(--brand-dark);
+        }
+
+        /* ===== Services Section ===== */
+        .services-section {
+            padding: 40px 0;
+            background: var(--bg-white);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .service-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 25px;
+            background: var(--bg-light-gray);
+            border-radius: var(--radius-lg);
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .service-card:hover {
+            background: var(--bg-white);
+            border-color: var(--brand-light);
+            box-shadow: var(--shadow);
+        }
+
+        .service-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--brand-dark);
+            color: var(--brand-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .service-content h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--brand-dark);
+            margin-bottom: 3px;
+        }
+
+        .service-content p {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        /* ===== Brands Section ===== */
+        .brands-section {
+            padding: 40px 0;
+            background: var(--bg-light-gray);
+        }
+
+        .brands-slider {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .brand-item {
+            padding: 20px 30px;
+            background: var(--bg-white);
+            border-radius: var(--radius);
+            transition: var(--transition);
+            filter: grayscale(100%);
+            opacity: 0.6;
+        }
+
+        .brand-item:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+            box-shadow: var(--shadow);
+        }
+
+        .brand-item img {
+            height: 40px;
+            object-fit: contain;
+        }
+
+        /* ===== Footer ===== */
+        .site-footer {
+            background: var(--brand-dark);
+            color: white;
+            padding-top: 50px;
+        }
+
+        .footer-main {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-brand {
+            max-width: 300px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .footer-logo i {
+            color: var(--brand-light);
+        }
+
+        .footer-desc {
+            font-size: 13px;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 10px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            background: var(--brand-light);
+            color: var(--brand-dark);
+        }
+
+        .footer-column h4 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--brand-light);
+        }
+
+        .footer-column ul {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-column a {
+            font-size: 13px;
+            color: rgba(255,255,255,0.7);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-column a:hover {
+            color: var(--brand-light);
+            padding-left: 5px;
+        }
+
+        .footer-column a i {
+            width: 16px;
+            font-size: 12px;
+            color: var(--brand-light);
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .contact-item i {
+            width: 16px;
+            color: var(--brand-light);
+            margin-top: 3px;
+        }
+
+        /* Footer Bottom */
+        .footer-bottom {
+            padding: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .footer-copyright {
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .footer-payments {
+            display: flex;
+            gap: 10px;
+        }
+
+        .footer-payments img {
+            height: 30px;
+        }
+
+        /* ===== WhatsApp Button ===== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: var(--transition);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
+            50% { box-shadow: 0 4px 30px rgba(37, 211, 102, 0.6); }
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 1200px) {
+            .products-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .categories-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .footer-main {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .slider-container {
+                grid-template-columns: 1fr;
+            }
+            .side-banners {
+                flex-direction: row;
+            }
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .header-content {
+                flex-wrap: wrap;
+            }
+            .search-bar {
+                order: 3;
+                max-width: 100%;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar-content {
+                justify-content: center;
+            }
+            .top-bar-right {
+                display: none;
+            }
+            .categories-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .nav-menu {
+                display: none;
+            }
+            .slide-content {
+                padding: 25px;
+                min-height: 280px;
+            }
+            .slide-text {
+                max-width: 100%;
+            }
+            .slide-image {
+                display: none;
+            }
+            .slide-title {
+                font-size: 24px;
+            }
+            .footer-main {
+                grid-template-columns: 1fr 1fr;
+            }
+            .footer-brand {
+                grid-column: span 2;
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .side-banners {
+                flex-direction: column;
+            }
+            .footer-main {
+                grid-template-columns: 1fr;
+            }
+            .footer-brand {
+                grid-column: span 1;
+            }
+            .header-actions {
+                gap: 10px;
+            }
+            .header-action span {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Top Bar -->
+<div class="top-bar">
+    <div class="container">
+        <div class="top-bar-content">
+            <div class="top-bar-left">
+                <a href="tel:602861227">
+                    <i class="fas fa-phone-alt"></i> 602 861 227
+                </a>
+                <a href="mailto:contact@electromti.com">
+                    <i class="fas fa-envelope"></i> contact@electromti.com
+                </a>
+                <span>
+                    <i class="fas fa-map-marker-alt"></i> Avenida Estación, 42 - Torre Pacheco, Murcia
+                </span>
+            </div>
+            <div class="top-bar-right">
+                <a href="#"><i class="fas fa-truck"></i> Envío gratis +50€</a>
+                <a href="#"><i class="fas fa-undo"></i> Devoluciones 14 días</a>
+                <a href="#"><i class="fas fa-shield-alt"></i> Pago seguro</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Header -->
+<header class="site-header">
+    <div class="header-main">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <a href="#" class="site-logo">
+                    <i class="fas fa-bolt"></i>
+                    <span>ELECTROMTI</span>
+                </a>
+
+                <!-- Search Bar -->
+                <div class="search-bar">
+                    <form>
+                        <select>
+                            <option value="">Todas las categorías</option>
+                            <option value="moviles">Móviles</option>
+                            <option value="portatiles">Portátiles</option>
+                            <option value="tablets">Tablets</option>
+                            <option value="televisores">Televisores</option>
+                            <option value="electrodomesticos">Electrodomésticos</option>
+                            <option value="accesorios">Accesorios</option>
+                        </select>
+                        <input type="text" placeholder="Buscar productos...">
+                        <button type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+
+                <!-- Header Actions -->
+                <div class="header-actions">
+                    <a href="#" class="header-action">
+                        <i class="fas fa-microphone"></i>
+                        <span>Buscar con IA</span>
+                    </a>
+                    <a href="#" class="header-action">
+                        <i class="fas fa-user"></i>
+                        <span>Mi cuenta</span>
+                    </a>
+                    <a href="#" class="header-action cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Mi cesta</span>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <div class="nav-content">
+                <!-- Categories Button -->
+                <button class="categories-btn">
+                    <i class="fas fa-bars"></i>
+                    <span>Todas las categorías</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+
+                <!-- Main Menu -->
+                <ul class="nav-menu">
+                    <li>
+                        <a href="#">
+                            <span>Ofertas</span>
+                            <i class="fas fa-fire" style="color: #ff6b00;"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Móviles</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="#"><i class="fab fa-apple"></i> iPhone</a>
+                            <a href="#"><i class="fab fa-android"></i> Samsung</a>
+                            <a href="#"><i class="fas fa-mobile-alt"></i> Xiaomi</a>
+                            <a href="#"><i class="fas fa-mobile-alt"></i> OPPO</a>
+                            <a href="#"><i class="fas fa-mobile-alt"></i> Realme</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Portátiles</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="#"><i class="fab fa-apple"></i> MacBook</a>
+                            <a href="#"><i class="fas fa-laptop"></i> Gaming</a>
+                            <a href="#"><i class="fas fa-laptop"></i> Ultrabooks</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Electrodomésticos</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="#"><i class="fas fa-snowflake"></i> Frigoríficos</a>
+                            <a href="#"><i class="fas fa-soap"></i> Lavadoras</a>
+                            <a href="#"><i class="fas fa-wind"></i> Aire Acondicionado</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Accesorios</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Mayoristas</span>
+                            <i class="fas fa-crown" style="color: #ffc107;"></i>
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Repair Button -->
+                <a href="#repair" class="repair-btn">
+                    <i class="fas fa-tools"></i>
+                    <span>Reparación de Móviles</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Hero Slider -->
+<section class="hero-slider">
+    <div class="container">
+        <div class="slider-container">
+            <!-- Main Slider -->
+            <div class="main-slider">
+                <!-- Slide 1 -->
+                <div class="slide active">
+                    <div class="slide-content">
+                        <div class="slide-text">
+                            <span class="slide-badge">-15% DESCUENTO</span>
+                            <h2 class="slide-title">iPhone 15 Pro Max</h2>
+                            <p class="slide-desc">El iPhone más potente. Chip A17 Pro, cámara de 48MP y diseño en titanio.</p>
+                            <div class="slide-price">
+                                1.199€ <span class="old-price">1.399€</span>
+                            </div>
+                            <a href="#" class="slide-btn">
+                                Ver ofertas <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                        <div class="slide-image">
+                            <img src="https://via.placeholder.com/400x400/f5f5f5/333333?text=iPhone+15+Pro" alt="iPhone 15 Pro Max">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="slide">
+                    <div class="slide-content" style="background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);">
+                        <div class="slide-text">
+                            <span class="slide-badge" style="background: #14e6f4; color: #072553;">NUEVO</span>
+                            <h2 class="slide-title">Samsung Galaxy S24 Ultra</h2>
+                            <p class="slide-desc">Galaxy AI integrada. La experiencia Samsung más avanzada.</p>
+                            <div class="slide-price">
+                                1.099€ <span class="old-price">1.299€</span>
+                            </div>
+                            <a href="#" class="slide-btn">
+                                Comprar ahora <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                        <div class="slide-image">
+                            <img src="https://via.placeholder.com/400x400/f5f5f5/333333?text=Galaxy+S24" alt="Samsung Galaxy S24">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="slide">
+                    <div class="slide-content" style="background: linear-gradient(135deg, #ff6b00 0%, #ff8533 100%);">
+                        <div class="slide-text">
+                            <span class="slide-badge" style="background: white; color: #ff6b00;">OFERTAS</span>
+                            <h2 class="slide-title">Electrodomésticos</h2>
+                            <p class="slide-desc">Hasta 40% de descuento en electrodomésticos seleccionados.</p>
+                            <div class="slide-price">
+                                Desde 199€
+                            </div>
+                            <a href="#" class="slide-btn" style="background: #072553;">
+                                Ver todo <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                        <div class="slide-image">
+                            <img src="https://via.placeholder.com/400x400/f5f5f5/333333?text=Electrodomesticos" alt="Electrodomésticos">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slider Controls -->
+                <div class="slider-controls">
+                    <span class="slider-dot active" data-slide="0"></span>
+                    <span class="slider-dot" data-slide="1"></span>
+                    <span class="slider-dot" data-slide="2"></span>
+                </div>
+            </div>
+
+            <!-- Side Banners -->
+            <div class="side-banners">
+                <div class="side-banner orange">
+                    <div class="side-banner-content">
+                        <span class="side-banner-badge">MAYORISTAS</span>
+                        <h3>Venta al por mayor</h3>
+                        <p>Precios especiales para profesionales</p>
+                    </div>
+                </div>
+                <div class="side-banner cyan">
+                    <div class="side-banner-content">
+                        <span class="side-banner-badge"><i class="fas fa-tools"></i> SERVICIO</span>
+                        <h3>Reparación express</h3>
+                        <p>Tu móvil como nuevo en 24h</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="services-section">
+    <div class="container">
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Envío Gratis</h3>
+                    <p>En pedidos superiores a 50€</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-undo"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Devoluciones</h3>
+                    <p>14 días para devoluciones</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Pago Seguro</h3>
+                    <p>100% seguro con SSL</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Soporte 24/7</h3>
+                    <p>Atención al cliente dedicada</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Categories Section -->
+<section class="categories-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">
+                <i class="fas fa-th-large"></i>
+                Categorías
+            </h2>
+            <a href="#" class="view-all">
+                Ver todas <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+        <div class="categories-grid">
+            <a href="#" class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>Móviles</h3>
+                <span>156 productos</span>
+            </a>
+            <a href="#" class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-laptop"></i>
+                </div>
+                <h3>Portátiles</h3>
+                <span>89 productos</span>
+            </a>
+            <a href="#" class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-tablet-alt"></i>
+                </div>
+                <h3>Tablets</h3>
+                <span>45 productos</span>
+            </a>
+            <a href="#" class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-tv"></i>
+                </div>
+                <h3>Televisores</h3>
+                <span>67 productos</span>
+            </a>
+            <a href="#" class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-blender"></i>
+                </div>
+                <h3>Electrodomésticos</h3>
+                <span>123 productos</span>
+            </a>
+            <a href="#" class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-headphones"></i>
+                </div>
+                <h3>Accesorios</h3>
+                <span>234 productos</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Products -->
+<section class="products-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">
+                <i class="fas fa-fire"></i>
+                Ofertas del momento
+            </h2>
+            <a href="#" class="view-all">
+                Ver más <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <!-- Tabs -->
+        <div class="products-tabs">
+            <button class="tab-btn active">Todos</button>
+            <button class="tab-btn">Móviles</button>
+            <button class="tab-btn">Portátiles</button>
+            <button class="tab-btn">Electrodomésticos</button>
+            <button class="tab-btn">Accesorios</button>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <span class="product-badge sale">-14%</span>
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x300/f5f5f5/333333?text=iPhone+15" alt="iPhone 15 Pro Max">
+                    <div class="product-actions">
+                        <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                        <button class="product-action-btn"><i class="fas fa-exchange-alt"></i></button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">MÓVILES</span>
+                    <h3 class="product-title">iPhone 15 Pro Max 256GB</h3>
+                    <div class="product-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span>(128)</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price">1.199,00€</span>
+                        <span class="old-price">1.399,00€</span>
+                    </div>
+                    <div class="product-footer">
+                        <button class="add-to-cart-btn">
+                            <i class="fas fa-shopping-cart"></i> Añadir
+                        </button>
+                        <button class="quick-view-btn"><i class="fas fa-eye"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <span class="product-badge hot">TOP</span>
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x300/f5f5f5/333333?text=Galaxy+S24" alt="Samsung Galaxy S24">
+                    <div class="product-actions">
+                        <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                        <button class="product-action-btn"><i class="fas fa-exchange-alt"></i></button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">MÓVILES</span>
+                    <h3 class="product-title">Samsung Galaxy S24 Ultra 512GB</h3>
+                    <div class="product-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span>(95)</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price">1.099,00€</span>
+                        <span class="old-price">1.299,00€</span>
+                    </div>
+                    <div class="product-footer">
+                        <button class="add-to-cart-btn">
+                            <i class="fas fa-shopping-cart"></i> Añadir
+                        </button>
+                        <button class="quick-view-btn"><i class="fas fa-eye"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <span class="product-badge new">NUEVO</span>
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x300/f5f5f5/333333?text=MacBook+Air" alt="MacBook Air M3">
+                    <div class="product-actions">
+                        <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                        <button class="product-action-btn"><i class="fas fa-exchange-alt"></i></button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">PORTÁTILES</span>
+                    <h3 class="product-title">MacBook Air M3 13" 256GB</h3>
+                    <div class="product-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span>(67)</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price">1.099,00€</span>
+                        <span class="old-price">1.249,00€</span>
+                    </div>
+                    <div class="product-footer">
+                        <button class="add-to-cart-btn">
+                            <i class="fas fa-shopping-cart"></i> Añadir
+                        </button>
+                        <button class="quick-view-btn"><i class="fas fa-eye"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card">
+                <span class="product-badge sale">-14%</span>
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x300/f5f5f5/333333?text=iPad+Pro" alt="iPad Pro">
+                    <div class="product-actions">
+                        <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                        <button class="product-action-btn"><i class="fas fa-exchange-alt"></i></button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">TABLETS</span>
+                    <h3 class="product-title">iPad Pro 12.9" M2 128GB WiFi</h3>
+                    <div class="product-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span>(43)</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price">1.149,00€</span>
+                        <span class="old-price">1.329,00€</span>
+                    </div>
+                    <div class="product-footer">
+                        <button class="add-to-cart-btn">
+                            <i class="fas fa-shopping-cart"></i> Añadir
+                        </button>
+                        <button class="quick-view-btn"><i class="fas fa-eye"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="product-card">
+                <span class="product-badge hot">TOP</span>
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/300x300/f5f5f5/333333?text=AirPods+Pro" alt="AirPods Pro">
+                    <div class="product-actions">
+                        <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                        <button class="product-action-btn"><i class="fas fa-exchange-alt"></i></button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">ACCESORIOS</span>
+                    <h3 class="product-title">AirPods Pro 2ª Generación</h3>
+                    <div class="product-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span>(210)</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price">229,00€</span>
+                        <span class="old-price">279,00€</span>
+                    </div>
+                    <div class="product-footer">
+                        <button class="add-to-cart-btn">
+                            <i class="fas fa-shopping-cart"></i> Añadir
+                        </button>
+                        <button class="quick-view-btn"><i class="fas fa-eye"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Brands Section -->
+<section class="brands-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">
+                <i class="fas fa-award"></i>
+                Marcas destacadas
+            </h2>
+        </div>
+        <div class="brands-slider">
+            <div class="brand-item">
+                <img src="https://via.placeholder.com/120x50/ffffff/333333?text=Apple" alt="Apple">
+            </div>
+            <div class="brand-item">
+                <img src="https://via.placeholder.com/120x50/ffffff/333333?text=Samsung" alt="Samsung">
+            </div>
+            <div class="brand-item">
+                <img src="https://via.placeholder.com/120x50/ffffff/333333?text=Xiaomi" alt="Xiaomi">
+            </div>
+            <div class="brand-item">
+                <img src="https://via.placeholder.com/120x50/ffffff/333333?text=Sony" alt="Sony">
+            </div>
+            <div class="brand-item">
+                <img src="https://via.placeholder.com/120x50/ffffff/333333?text=LG" alt="LG">
+            </div>
+            <div class="brand-item">
+                <img src="https://via.placeholder.com/120x50/ffffff/333333?text=Dyson" alt="Dyson">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="site-footer">
+    <div class="container">
+        <!-- Footer Main -->
+        <div class="footer-main">
+            <!-- Brand Column -->
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <i class="fas fa-bolt"></i>
+                    <span>ELECTROMTI</span>
+                </div>
+                <p class="footer-desc">
+                    Tu tienda de confianza para móviles, electrónica y electrodomésticos. Venta al por mayor y menor con los mejores precios del mercado.
+                </p>
+                <div class="footer-social">
+                    <a href="https://facebook.com/electro.mti" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com/electro.mti" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://tiktok.com/@electro.mti" target="_blank"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <!-- Products Column -->
+            <div class="footer-column">
+                <h4>Productos</h4>
+                <ul>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Móviles</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Portátiles</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Tablets</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Televisores</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Electrodomésticos</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Accesorios</a></li>
+                </ul>
+            </div>
+
+            <!-- Services Column -->
+            <div class="footer-column">
+                <h4>Servicios</h4>
+                <ul>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Reparación de móviles</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Venta al por mayor</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Servicio técnico</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Instalación</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Garantía extendida</a></li>
+                </ul>
+            </div>
+
+            <!-- Information Column -->
+            <div class="footer-column">
+                <h4>Información</h4>
+                <ul>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Sobre nosotros</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Condiciones de uso</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Política de privacidad</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Política de devoluciones</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Envíos</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Column -->
+            <div class="footer-column">
+                <h4>Contacto</h4>
+                <div class="footer-contact">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Avenida Estación, 42 Torre Pacheco, Murcia</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>602 861 227<br>602 682 042</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>contact@electromti.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Lun - Sáb: 10:00 - 20:00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="footer-copyright">
+                &copy; 2024 <strong>ElectroMTI</strong>. Todos los derechos reservados.
+            </div>
+            <div class="footer-payments">
+                <img src="https://via.placeholder.com/50x30/ffffff/333333?text=Visa" alt="Visa">
+                <img src="https://via.placeholder.com/50x30/ffffff/333333?text=MC" alt="MasterCard">
+                <img src="https://via.placeholder.com/50x30/ffffff/333333?text=PayPal" alt="PayPal">
+                <img src="https://via.placeholder.com/50x30/ffffff/333333?text=Bizum" alt="Bizum">
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- WhatsApp Float Button -->
+<a href="https://wa.me/34602861227" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+    // Slider functionality
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.slider-dot');
+    let currentSlide = 0;
+
+    function showSlide(index) {
+        slides.forEach(s => s.classList.remove('active'));
+        dots.forEach(d => d.classList.remove('active'));
+        slides[index].classList.add('active');
+        dots[index].classList.add('active');
+        currentSlide = index;
+    }
+
+    function nextSlide() {
+        showSlide((currentSlide + 1) % slides.length);
+    }
+
+    // Auto slide
+    setInterval(nextSlide, 5000);
+
+    // Dot click
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => showSlide(index));
+    });
+
+    // Tab functionality
+    const tabs = document.querySelectorAll('.tab-btn');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+        });
+    });
+
+    // Add to cart
+    const cartBtns = document.querySelectorAll('.add-to-cart-btn');
+    const cartCount = document.querySelector('.cart-count');
+    let count = 0;
+
+    cartBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            count++;
+            cartCount.textContent = count;
+            btn.innerHTML = '<i class="fas fa-check"></i> Añadido';
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-shopping-cart"></i> Añadir';
+            }, 2000);
+        });
+    });
+
+    // Wishlist
+    const heartBtns = document.querySelectorAll('.product-action-btn');
+    heartBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const icon = btn.querySelector('i');
+            if (icon.classList.contains('far')) {
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+                icon.style.color = '#dc3545';
+            } else if (icon.classList.contains('fa-heart')) {
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+                icon.style.color = '';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

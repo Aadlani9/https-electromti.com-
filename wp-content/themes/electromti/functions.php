@@ -463,3 +463,46 @@ function electromti_ajax_add_to_cart() {
 }
 add_action('wp_ajax_electromti_add_to_cart', 'electromti_ajax_add_to_cart');
 add_action('wp_ajax_nopriv_electromti_add_to_cart', 'electromti_ajax_add_to_cart');
+
+/**
+ * Custom Login Page Styles
+ */
+function electromti_login_styles() {
+    // Enqueue Font Awesome
+    wp_enqueue_style('font-awesome-login', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css', array(), '6.4.0');
+
+    // Enqueue Google Fonts
+    wp_enqueue_style('google-fonts-login', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap', array(), null);
+
+    // Enqueue custom login styles
+    wp_enqueue_style('electromti-login', get_template_directory_uri() . '/assets/css/login.css', array(), '1.0.0');
+}
+add_action('login_enqueue_scripts', 'electromti_login_styles');
+
+/**
+ * Custom Login Logo URL
+ */
+function electromti_login_logo_url() {
+    return home_url('/');
+}
+add_filter('login_headerurl', 'electromti_login_logo_url');
+
+/**
+ * Custom Login Logo Title
+ */
+function electromti_login_logo_title() {
+    return 'ElectroMTI - Tu tienda de electrónica';
+}
+add_filter('login_headertext', 'electromti_login_logo_title');
+
+/**
+ * Add body font family to login page
+ */
+function electromti_login_head() {
+    echo '<style>
+        body.login, #login, #loginform, #registerform, #lostpasswordform {
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+        }
+    </style>';
+}
+add_action('login_head', 'electromti_login_head');

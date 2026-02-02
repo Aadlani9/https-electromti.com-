@@ -46,10 +46,10 @@ $product = array(
         'Peso'         => '221 g',
     ),
     'images'      => array(
-        'https://via.placeholder.com/600x600/f5f5f5/333333?text=iPhone+15+Pro+1',
-        'https://via.placeholder.com/600x600/f5f5f5/333333?text=iPhone+15+Pro+2',
-        'https://via.placeholder.com/600x600/f5f5f5/333333?text=iPhone+15+Pro+3',
-        'https://via.placeholder.com/600x600/f5f5f5/333333?text=iPhone+15+Pro+4',
+        'https://placehold.co/600x600/f5f5f5/333333?text=iPhone+15+Pro+1',
+        'https://placehold.co/600x600/f5f5f5/333333?text=iPhone+15+Pro+2',
+        'https://placehold.co/600x600/f5f5f5/333333?text=iPhone+15+Pro+3',
+        'https://placehold.co/600x600/f5f5f5/333333?text=iPhone+15+Pro+4',
     ),
     'colors'      => array(
         array('name' => 'Titanio Natural', 'code' => '#C4B6A6'),
@@ -105,7 +105,7 @@ $discount = round((($product['old_price'] - $product['price']) / $product['old_p
             <!-- Product Info -->
             <div class="product-info-main">
                 <div class="product-brand">
-                    <img src="https://via.placeholder.com/100x40/ffffff/333333?text=<?php echo esc_attr($product['brand']); ?>" alt="<?php echo esc_attr($product['brand']); ?>">
+                    <img src="https://placehold.co/100x40/ffffff/333333?text=<?php echo esc_attr($product['brand']); ?>" alt="<?php echo esc_attr($product['brand']); ?>">
                 </div>
 
                 <h1 class="product-title"><?php echo esc_html($product['name']); ?></h1>

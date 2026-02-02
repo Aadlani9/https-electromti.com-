@@ -284,7 +284,7 @@ function electromti_get_sample_products() {
             'rating'   => 5,
             'reviews'  => 128,
             'badge'    => 'sale',
-            'image'    => 'https://via.placeholder.com/300x300/f5f5f5/333333?text=iPhone+15',
+            'image'    => 'https://placehold.co/300x300/f5f5f5/333333?text=iPhone+15',
         ),
         array(
             'id'       => 2,
@@ -295,7 +295,7 @@ function electromti_get_sample_products() {
             'rating'   => 5,
             'reviews'  => 95,
             'badge'    => 'hot',
-            'image'    => 'https://via.placeholder.com/300x300/f5f5f5/333333?text=Galaxy+S24',
+            'image'    => 'https://placehold.co/300x300/f5f5f5/333333?text=Galaxy+S24',
         ),
         array(
             'id'       => 3,
@@ -306,7 +306,7 @@ function electromti_get_sample_products() {
             'rating'   => 5,
             'reviews'  => 67,
             'badge'    => 'new',
-            'image'    => 'https://via.placeholder.com/300x300/f5f5f5/333333?text=MacBook+Air',
+            'image'    => 'https://placehold.co/300x300/f5f5f5/333333?text=MacBook+Air',
         ),
         array(
             'id'       => 4,
@@ -317,7 +317,7 @@ function electromti_get_sample_products() {
             'rating'   => 4.5,
             'reviews'  => 43,
             'badge'    => 'sale',
-            'image'    => 'https://via.placeholder.com/300x300/f5f5f5/333333?text=iPad+Pro',
+            'image'    => 'https://placehold.co/300x300/f5f5f5/333333?text=iPad+Pro',
         ),
         array(
             'id'       => 5,
@@ -328,7 +328,7 @@ function electromti_get_sample_products() {
             'rating'   => 4.5,
             'reviews'  => 210,
             'badge'    => 'hot',
-            'image'    => 'https://via.placeholder.com/300x300/f5f5f5/333333?text=AirPods+Pro',
+            'image'    => 'https://placehold.co/300x300/f5f5f5/333333?text=AirPods+Pro',
         ),
         array(
             'id'       => 6,
@@ -339,7 +339,7 @@ function electromti_get_sample_products() {
             'rating'   => 4,
             'reviews'  => 156,
             'badge'    => 'sale',
-            'image'    => 'https://via.placeholder.com/300x300/f5f5f5/333333?text=Redmi+Note',
+            'image'    => 'https://placehold.co/300x300/f5f5f5/333333?text=Redmi+Note',
         ),
         array(
             'id'       => 7,
@@ -350,7 +350,7 @@ function electromti_get_sample_products() {
             'rating'   => 5,
             'reviews'  => 34,
             'badge'    => 'new',
-            'image'    => 'https://via.placeholder.com/300x300/f5f5f5/333333?text=ASUS+ROG',
+            'image'    => 'https://placehold.co/300x300/f5f5f5/333333?text=ASUS+ROG',
         ),
         array(
             'id'       => 8,
@@ -361,7 +361,7 @@ function electromti_get_sample_products() {
             'rating'   => 4.5,
             'reviews'  => 78,
             'badge'    => 'sale',
-            'image'    => 'https://via.placeholder.com/300x300/f5f5f5/333333?text=Samsung+TV',
+            'image'    => 'https://placehold.co/300x300/f5f5f5/333333?text=Samsung+TV',
         ),
         array(
             'id'       => 9,
@@ -372,7 +372,7 @@ function electromti_get_sample_products() {
             'rating'   => 5,
             'reviews'  => 89,
             'badge'    => 'hot',
-            'image'    => 'https://via.placeholder.com/300x300/f5f5f5/333333?text=Dyson+V15',
+            'image'    => 'https://placehold.co/300x300/f5f5f5/333333?text=Dyson+V15',
         ),
         array(
             'id'       => 10,
@@ -383,7 +383,7 @@ function electromti_get_sample_products() {
             'rating'   => 5,
             'reviews'  => 234,
             'badge'    => 'hot',
-            'image'    => 'https://via.placeholder.com/300x300/f5f5f5/333333?text=PS5+Slim',
+            'image'    => 'https://placehold.co/300x300/f5f5f5/333333?text=PS5+Slim',
         ),
     );
 }

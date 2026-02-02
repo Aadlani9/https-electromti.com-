@@ -128,7 +128,7 @@
 }
 
 .zoom-btn:hover {
-    background: var(--brand-orange);
+    background: var(--brand-button);
     color: white;
 }
 
@@ -421,12 +421,12 @@
 }
 
 .btn-add-cart {
-    background: var(--brand-orange);
+    background: var(--brand-button);
     color: white;
 }
 
 .btn-add-cart:hover {
-    background: #e55a00;
+    background: var(--brand-button-hover);
 }
 
 .btn-buy-now {

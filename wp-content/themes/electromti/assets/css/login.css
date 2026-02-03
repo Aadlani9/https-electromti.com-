@@ -282,60 +282,13 @@ body.login::after {
     color: #28a745 !important;
 }
 
-/* Language Switcher - Integrated nicely */
+/* Language Switcher - Simple styling */
 .language-switcher,
-#language-switcher,
-#login .language-switcher {
-    position: static !important;
-    width: 100% !important;
-    text-align: center !important;
+#language-switcher {
     margin-top: 25px !important;
     padding-top: 20px !important;
     border-top: 1px solid #e0e0e0 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 10px !important;
-    flex-wrap: wrap !important;
-    clear: both !important;
-    float: none !important;
-    z-index: 1 !important;
-    background: transparent !important;
-    order: 99 !important;
-}
-
-/* Ensure navigation links appear before language switcher */
-#login {
-    display: flex !important;
-    flex-direction: column !important;
-}
-
-#login h1 {
-    order: 1 !important;
-}
-
-#loginform,
-#registerform,
-#lostpasswordform {
-    order: 2 !important;
-}
-
-#login_error,
-.message {
-    order: 3 !important;
-}
-
-#nav {
-    order: 4 !important;
-}
-
-#backtoblog {
-    order: 5 !important;
-}
-
-.language-switcher,
-#language-switcher {
-    order: 6 !important;
+    text-align: center !important;
 }
 
 .language-switcher label,

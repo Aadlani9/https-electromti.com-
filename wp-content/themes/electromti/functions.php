@@ -231,6 +231,400 @@ function electromti_customize_register($wp_customize) {
         'section' => 'electromti_repair',
         'type'    => 'text',
     ));
+
+    // ========================================
+    // Hero Banners Section
+    // ========================================
+    $wp_customize->add_section('electromti_hero_banners', array(
+        'title'    => __('Hero Banners', 'electromti'),
+        'priority' => 45,
+    ));
+
+    // Banner 1
+    $wp_customize->add_setting('hero_banner_1_image', array(
+        'default'           => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'hero_banner_1_image', array(
+        'label'   => __('Banner 1 - Image', 'electromti'),
+        'section' => 'electromti_hero_banners',
+    )));
+
+    $wp_customize->add_setting('hero_banner_1_badge', array(
+        'default'           => '-15% DESCUENTO',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('hero_banner_1_badge', array(
+        'label'   => __('Banner 1 - Badge Text', 'electromti'),
+        'section' => 'electromti_hero_banners',
+        'type'    => 'text',
+    ));
+
+    $wp_customize->add_setting('hero_banner_1_title', array(
+        'default'           => 'iPhone 15 Pro Max',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('hero_banner_1_title', array(
+        'label'   => __('Banner 1 - Title', 'electromti'),
+        'section' => 'electromti_hero_banners',
+        'type'    => 'text',
+    ));
+
+    $wp_customize->add_setting('hero_banner_1_desc', array(
+        'default'           => 'El iPhone más potente. Chip A17 Pro, cámara de 48MP y diseño en titanio.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+    ));
+    $wp_customize->add_control('hero_banner_1_desc', array(
+        'label'   => __('Banner 1 - Description', 'electromti'),
+        'section' => 'electromti_hero_banners',
+        'type'    => 'textarea',
+    ));
+
+    $wp_customize->add_setting('hero_banner_1_price', array(
+        'default'           => '1.199€',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('hero_banner_1_price', array(
+        'label'   => __('Banner 1 - Price', 'electromti'),
+        'section' => 'electromti_hero_banners',
+        'type'    => 'text',
+    ));
+
+    $wp_customize->add_setting('hero_banner_1_old_price', array(
+        'default'           => '1.399€',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('hero_banner_1_old_price', array(
+        'label'   => __('Banner 1 - Old Price', 'electromti'),
+        'section' => 'electromti_hero_banners',
+        'type'    => 'text',
+    ));
+
+    $wp_customize->add_setting('hero_banner_1_link', array(
+        'default'           => '#',
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+    $wp_customize->add_control('hero_banner_1_link', array(
+        'label'   => __('Banner 1 - Link URL', 'electromti'),
+        'section' => 'electromti_hero_banners',
+        'type'    => 'url',
+    ));
+
+    // Banner 2
+    $wp_customize->add_setting('hero_banner_2_image', array(
+        'default'           => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'hero_banner_2_image', array(
+        'label'   => __('Banner 2 - Image', 'electromti'),
+        'section' => 'electromti_hero_banners',
+    )));
+
+    $wp_customize->add_setting('hero_banner_2_badge', array(
+        'default'           => 'NUEVO',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('hero_banner_2_badge', array(
+        'label'   => __('Banner 2 - Badge Text', 'electromti'),
+        'section' => 'electromti_hero_banners',
+        'type'    => 'text',
+    ));
+
+    $wp_customize->add_setting('hero_banner_2_title', array(
+        'default'           => 'Samsung Galaxy S24 Ultra',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('hero_banner_2_title', array(
+        'label'   => __('Banner 2 - Title', 'electromti'),
+        'section' => 'electromti_hero_banners',
+        'type'    => 'text',
+    ));
+
+    $wp_customize->add_setting('hero_banner_2_desc', array(
+        'default'           => 'Galaxy AI integrada. La experiencia Samsung más avanzada.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+    ));
+    $wp_customize->add_control('hero_banner_2_desc', array(
+        'label'   => __('Banner 2 - Description', 'electromti'),
+        'section' => 'electromti_hero_banners',
+        'type'    => 'textarea',
+    ));
+
+    $wp_customize->add_setting('hero_banner_2_price', array(
+        'default'           => '1.099€',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('hero_banner_2_price', array(
+        'label'   => __('Banner 2 - Price', 'electromti'),
+        'section' => 'electromti_hero_banners',
+        'type'    => 'text',
+    ));
+
+    $wp_customize->add_setting('hero_banner_2_old_price', array(
+        'default'           => '1.299€',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('hero_banner_2_old_price', array(
+        'label'   => __('Banner 2 - Old Price', 'electromti'),
+        'section' => 'electromti_hero_banners',
+        'type'    => 'text',
+    ));
+
+    $wp_customize->add_setting('hero_banner_2_link', array(
+        'default'           => '#',
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+    $wp_customize->add_control('hero_banner_2_link', array(
+        'label'   => __('Banner 2 - Link URL', 'electromti'),
+        'section' => 'electromti_hero_banners',
+        'type'    => 'url',
+    ));
+
+    // Banner 3
+    $wp_customize->add_setting('hero_banner_3_image', array(
+        'default'           => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'hero_banner_3_image', array(
+        'label'   => __('Banner 3 - Image', 'electromti'),
+        'section' => 'electromti_hero_banners',
+    )));
+
+    $wp_customize->add_setting('hero_banner_3_badge', array(
+        'default'           => 'OFERTAS',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('hero_banner_3_badge', array(
+        'label'   => __('Banner 3 - Badge Text', 'electromti'),
+        'section' => 'electromti_hero_banners',
+        'type'    => 'text',
+    ));
+
+    $wp_customize->add_setting('hero_banner_3_title', array(
+        'default'           => 'Electrodomésticos',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('hero_banner_3_title', array(
+        'label'   => __('Banner 3 - Title', 'electromti'),
+        'section' => 'electromti_hero_banners',
+        'type'    => 'text',
+    ));
+
+    $wp_customize->add_setting('hero_banner_3_desc', array(
+        'default'           => 'Hasta 40% de descuento en electrodomésticos seleccionados.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+    ));
+    $wp_customize->add_control('hero_banner_3_desc', array(
+        'label'   => __('Banner 3 - Description', 'electromti'),
+        'section' => 'electromti_hero_banners',
+        'type'    => 'textarea',
+    ));
+
+    $wp_customize->add_setting('hero_banner_3_price', array(
+        'default'           => 'Desde 199€',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('hero_banner_3_price', array(
+        'label'   => __('Banner 3 - Price', 'electromti'),
+        'section' => 'electromti_hero_banners',
+        'type'    => 'text',
+    ));
+
+    $wp_customize->add_setting('hero_banner_3_link', array(
+        'default'           => '#',
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+    $wp_customize->add_control('hero_banner_3_link', array(
+        'label'   => __('Banner 3 - Link URL', 'electromti'),
+        'section' => 'electromti_hero_banners',
+        'type'    => 'url',
+    ));
+
+    // ========================================
+    // Side Banners Section
+    // ========================================
+    $wp_customize->add_section('electromti_side_banners', array(
+        'title'    => __('Side Banners', 'electromti'),
+        'priority' => 46,
+    ));
+
+    // Side Banner 1 (Mayoristas)
+    $wp_customize->add_setting('side_banner_1_badge', array(
+        'default'           => 'MAYORISTAS',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('side_banner_1_badge', array(
+        'label'   => __('Side Banner 1 - Badge', 'electromti'),
+        'section' => 'electromti_side_banners',
+        'type'    => 'text',
+    ));
+
+    $wp_customize->add_setting('side_banner_1_title', array(
+        'default'           => 'Venta al por mayor',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('side_banner_1_title', array(
+        'label'   => __('Side Banner 1 - Title', 'electromti'),
+        'section' => 'electromti_side_banners',
+        'type'    => 'text',
+    ));
+
+    $wp_customize->add_setting('side_banner_1_desc', array(
+        'default'           => 'Precios especiales para profesionales',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('side_banner_1_desc', array(
+        'label'   => __('Side Banner 1 - Description', 'electromti'),
+        'section' => 'electromti_side_banners',
+        'type'    => 'text',
+    ));
+
+    $wp_customize->add_setting('side_banner_1_link', array(
+        'default'           => '#',
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+    $wp_customize->add_control('side_banner_1_link', array(
+        'label'   => __('Side Banner 1 - Link URL', 'electromti'),
+        'section' => 'electromti_side_banners',
+        'type'    => 'url',
+    ));
+
+    // Side Banner 2 (Reparación)
+    $wp_customize->add_setting('side_banner_2_badge', array(
+        'default'           => 'SERVICIO',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('side_banner_2_badge', array(
+        'label'   => __('Side Banner 2 - Badge', 'electromti'),
+        'section' => 'electromti_side_banners',
+        'type'    => 'text',
+    ));
+
+    $wp_customize->add_setting('side_banner_2_title', array(
+        'default'           => 'Reparación express',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('side_banner_2_title', array(
+        'label'   => __('Side Banner 2 - Title', 'electromti'),
+        'section' => 'electromti_side_banners',
+        'type'    => 'text',
+    ));
+
+    $wp_customize->add_setting('side_banner_2_desc', array(
+        'default'           => 'Tu móvil como nuevo en 24h',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('side_banner_2_desc', array(
+        'label'   => __('Side Banner 2 - Description', 'electromti'),
+        'section' => 'electromti_side_banners',
+        'type'    => 'text',
+    ));
+
+    $wp_customize->add_setting('side_banner_2_link', array(
+        'default'           => '#',
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+    $wp_customize->add_control('side_banner_2_link', array(
+        'label'   => __('Side Banner 2 - Link URL', 'electromti'),
+        'section' => 'electromti_side_banners',
+        'type'    => 'url',
+    ));
+
+    // ========================================
+    // Tagline Bar Section
+    // ========================================
+    $wp_customize->add_section('electromti_tagline', array(
+        'title'    => __('Tagline Bar', 'electromti'),
+        'priority' => 47,
+    ));
+
+    $wp_customize->add_setting('tagline_text_bold', array(
+        'default'           => 'Expertos en tecnología',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('tagline_text_bold', array(
+        'label'   => __('Tagline Bold Text', 'electromti'),
+        'section' => 'electromti_tagline',
+        'type'    => 'text',
+    ));
+
+    $wp_customize->add_setting('tagline_text_normal', array(
+        'default'           => 'con un servicio 5 estrellas',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('tagline_text_normal', array(
+        'label'   => __('Tagline Normal Text', 'electromti'),
+        'section' => 'electromti_tagline',
+        'type'    => 'text',
+    ));
+
+    // ========================================
+    // Homepage Sections Section
+    // ========================================
+    $wp_customize->add_section('electromti_homepage', array(
+        'title'    => __('Homepage Sections', 'electromti'),
+        'priority' => 48,
+    ));
+
+    $wp_customize->add_setting('show_offers_section', array(
+        'default'           => true,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+    $wp_customize->add_control('show_offers_section', array(
+        'label'   => __('Show Offers Section', 'electromti'),
+        'section' => 'electromti_homepage',
+        'type'    => 'checkbox',
+    ));
+
+    $wp_customize->add_setting('offers_section_title', array(
+        'default'           => 'Ofertas del momento',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('offers_section_title', array(
+        'label'   => __('Offers Section Title', 'electromti'),
+        'section' => 'electromti_homepage',
+        'type'    => 'text',
+    ));
+
+    $wp_customize->add_setting('offers_products_count', array(
+        'default'           => 5,
+        'sanitize_callback' => 'absint',
+    ));
+    $wp_customize->add_control('offers_products_count', array(
+        'label'   => __('Number of Offer Products', 'electromti'),
+        'section' => 'electromti_homepage',
+        'type'    => 'number',
+    ));
+
+    $wp_customize->add_setting('show_bestsellers_section', array(
+        'default'           => true,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+    $wp_customize->add_control('show_bestsellers_section', array(
+        'label'   => __('Show Best Sellers Section', 'electromti'),
+        'section' => 'electromti_homepage',
+        'type'    => 'checkbox',
+    ));
+
+    $wp_customize->add_setting('bestsellers_section_title', array(
+        'default'           => 'Los más vendidos',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('bestsellers_section_title', array(
+        'label'   => __('Best Sellers Section Title', 'electromti'),
+        'section' => 'electromti_homepage',
+        'type'    => 'text',
+    ));
+
+    $wp_customize->add_setting('bestsellers_products_count', array(
+        'default'           => 5,
+        'sanitize_callback' => 'absint',
+    ));
+    $wp_customize->add_control('bestsellers_products_count', array(
+        'label'   => __('Number of Best Seller Products', 'electromti'),
+        'section' => 'electromti_homepage',
+        'type'    => 'number',
+    ));
 }
 add_action('customize_register', 'electromti_customize_register');
 
@@ -388,46 +782,314 @@ function electromti_get_sample_products() {
     );
 }
 
-// Get categories
+// Get categories from WooCommerce (with fallback to sample data)
 function electromti_get_categories() {
+    // If WooCommerce is active, get real categories
+    if (class_exists('WooCommerce')) {
+        $categories = get_terms(array(
+            'taxonomy'   => 'product_cat',
+            'hide_empty' => false,
+            'parent'     => 0, // Only top-level categories
+            'number'     => 6,
+        ));
+
+        if (!empty($categories) && !is_wp_error($categories)) {
+            $result = array();
+            // Default icons mapping
+            $icons = array(
+                'moviles'          => 'fa-mobile-alt',
+                'telefonos'        => 'fa-mobile-alt',
+                'portatiles'       => 'fa-laptop',
+                'laptops'          => 'fa-laptop',
+                'tablets'          => 'fa-tablet-alt',
+                'televisores'      => 'fa-tv',
+                'tv'               => 'fa-tv',
+                'electrodomesticos' => 'fa-blender',
+                'accesorios'       => 'fa-headphones',
+                'gaming'           => 'fa-gamepad',
+                'audio'            => 'fa-headphones',
+            );
+
+            foreach ($categories as $cat) {
+                // Try to get custom icon from term meta, or use default
+                $icon = get_term_meta($cat->term_id, 'category_icon', true);
+                if (empty($icon)) {
+                    $icon = isset($icons[$cat->slug]) ? $icons[$cat->slug] : 'fa-box';
+                }
+
+                $result[] = array(
+                    'name'  => $cat->name,
+                    'icon'  => $icon,
+                    'count' => $cat->count,
+                    'slug'  => $cat->slug,
+                    'link'  => get_term_link($cat),
+                );
+            }
+            return $result;
+        }
+    }
+
+    // Fallback to sample data
     return array(
         array(
             'name'  => 'Móviles',
             'icon'  => 'fa-mobile-alt',
-            'count' => 156,
+            'count' => 0,
             'slug'  => 'moviles',
+            'link'  => '#',
         ),
         array(
             'name'  => 'Portátiles',
             'icon'  => 'fa-laptop',
-            'count' => 89,
+            'count' => 0,
             'slug'  => 'portatiles',
+            'link'  => '#',
         ),
         array(
             'name'  => 'Tablets',
             'icon'  => 'fa-tablet-alt',
-            'count' => 45,
+            'count' => 0,
             'slug'  => 'tablets',
+            'link'  => '#',
         ),
         array(
             'name'  => 'Televisores',
             'icon'  => 'fa-tv',
-            'count' => 67,
+            'count' => 0,
             'slug'  => 'televisores',
+            'link'  => '#',
         ),
         array(
             'name'  => 'Electrodomésticos',
             'icon'  => 'fa-blender',
-            'count' => 123,
+            'count' => 0,
             'slug'  => 'electrodomesticos',
+            'link'  => '#',
         ),
         array(
             'name'  => 'Accesorios',
             'icon'  => 'fa-headphones',
-            'count' => 234,
+            'count' => 0,
             'slug'  => 'accesorios',
+            'link'  => '#',
         ),
     );
+}
+
+/**
+ * WooCommerce Dynamic Product Functions
+ */
+
+// Get on-sale products
+function electromti_get_sale_products($limit = 5) {
+    if (!class_exists('WooCommerce')) {
+        return electromti_get_sample_products();
+    }
+
+    $args = array(
+        'post_type'      => 'product',
+        'posts_per_page' => $limit,
+        'post_status'    => 'publish',
+        'meta_query'     => array(
+            'relation' => 'OR',
+            array(
+                'key'     => '_sale_price',
+                'value'   => 0,
+                'compare' => '>',
+                'type'    => 'NUMERIC',
+            ),
+            array(
+                'key'     => '_min_variation_sale_price',
+                'value'   => 0,
+                'compare' => '>',
+                'type'    => 'NUMERIC',
+            ),
+        ),
+    );
+
+    return new WP_Query($args);
+}
+
+// Get featured products
+function electromti_get_featured_products($limit = 5) {
+    if (!class_exists('WooCommerce')) {
+        return electromti_get_sample_products();
+    }
+
+    $args = array(
+        'post_type'      => 'product',
+        'posts_per_page' => $limit,
+        'post_status'    => 'publish',
+        'tax_query'      => array(
+            array(
+                'taxonomy' => 'product_visibility',
+                'field'    => 'name',
+                'terms'    => 'featured',
+            ),
+        ),
+    );
+
+    return new WP_Query($args);
+}
+
+// Get best selling products
+function electromti_get_bestseller_products($limit = 5) {
+    if (!class_exists('WooCommerce')) {
+        return electromti_get_sample_products();
+    }
+
+    $args = array(
+        'post_type'      => 'product',
+        'posts_per_page' => $limit,
+        'post_status'    => 'publish',
+        'meta_key'       => 'total_sales',
+        'orderby'        => 'meta_value_num',
+        'order'          => 'DESC',
+    );
+
+    return new WP_Query($args);
+}
+
+// Get newest products
+function electromti_get_new_products($limit = 5) {
+    if (!class_exists('WooCommerce')) {
+        return electromti_get_sample_products();
+    }
+
+    $args = array(
+        'post_type'      => 'product',
+        'posts_per_page' => $limit,
+        'post_status'    => 'publish',
+        'orderby'        => 'date',
+        'order'          => 'DESC',
+    );
+
+    return new WP_Query($args);
+}
+
+// Get products by category
+function electromti_get_products_by_category($category_slug, $limit = 5) {
+    if (!class_exists('WooCommerce')) {
+        return electromti_get_sample_products();
+    }
+
+    $args = array(
+        'post_type'      => 'product',
+        'posts_per_page' => $limit,
+        'post_status'    => 'publish',
+        'tax_query'      => array(
+            array(
+                'taxonomy' => 'product_cat',
+                'field'    => 'slug',
+                'terms'    => $category_slug,
+            ),
+        ),
+    );
+
+    return new WP_Query($args);
+}
+
+// Helper function to render a product card
+function electromti_render_product_card($product) {
+    if (!$product instanceof WC_Product) {
+        return;
+    }
+
+    $product_id = $product->get_id();
+    $product_name = $product->get_name();
+    $product_link = get_permalink($product_id);
+    $product_image = wp_get_attachment_image_src(get_post_thumbnail_id($product_id), 'product-thumb');
+    $product_image_url = $product_image ? $product_image[0] : wc_placeholder_img_src('product-thumb');
+    $regular_price = $product->get_regular_price();
+    $sale_price = $product->get_sale_price();
+    $current_price = $product->get_price();
+    $rating = $product->get_average_rating();
+    $review_count = $product->get_review_count();
+
+    // Get product categories
+    $categories = wp_get_post_terms($product_id, 'product_cat');
+    $category_name = !empty($categories) ? $categories[0]->name : '';
+
+    // Determine badge
+    $badge = '';
+    $badge_class = '';
+    if ($product->is_on_sale() && $regular_price > 0) {
+        $discount = round((($regular_price - $sale_price) / $regular_price) * 100);
+        $badge = '-' . $discount . '%';
+        $badge_class = 'sale';
+    } elseif ($product->is_featured()) {
+        $badge = 'TOP';
+        $badge_class = 'hot';
+    } else {
+        // Check if product is new (added in last 30 days)
+        $post_date = get_the_date('U', $product_id);
+        $thirty_days_ago = strtotime('-30 days');
+        if ($post_date > $thirty_days_ago) {
+            $badge = 'NUEVO';
+            $badge_class = 'new';
+        }
+    }
+    ?>
+    <div class="product-card">
+        <?php if (!empty($badge)) : ?>
+        <span class="product-badge <?php echo esc_attr($badge_class); ?>">
+            <?php echo esc_html($badge); ?>
+        </span>
+        <?php endif; ?>
+
+        <div class="product-image">
+            <a href="<?php echo esc_url($product_link); ?>">
+                <img src="<?php echo esc_url($product_image_url); ?>" alt="<?php echo esc_attr($product_name); ?>">
+            </a>
+            <div class="product-actions">
+                <button class="product-action-btn wishlist-btn" data-product-id="<?php echo esc_attr($product_id); ?>" title="<?php esc_attr_e('Añadir a favoritos', 'electromti'); ?>">
+                    <i class="far fa-heart"></i>
+                </button>
+                <button class="product-action-btn compare-btn" data-product-id="<?php echo esc_attr($product_id); ?>" title="<?php esc_attr_e('Comparar', 'electromti'); ?>">
+                    <i class="fas fa-exchange-alt"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="product-info">
+            <?php if (!empty($category_name)) : ?>
+            <span class="product-category"><?php echo esc_html($category_name); ?></span>
+            <?php endif; ?>
+            <h3 class="product-title">
+                <a href="<?php echo esc_url($product_link); ?>"><?php echo esc_html($product_name); ?></a>
+            </h3>
+            <div class="product-rating">
+                <?php echo electromti_star_rating($rating); ?>
+                <span>(<?php echo esc_html($review_count); ?>)</span>
+            </div>
+            <div class="product-price">
+                <span class="current-price"><?php echo wc_price($current_price); ?></span>
+                <?php if ($product->is_on_sale() && $regular_price > 0) : ?>
+                <span class="old-price"><?php echo wc_price($regular_price); ?></span>
+                <?php endif; ?>
+            </div>
+            <div class="product-footer">
+                <button class="add-to-cart-btn" data-product-id="<?php echo esc_attr($product_id); ?>">
+                    <i class="fas fa-shopping-cart"></i>
+                    <?php esc_html_e('Añadir', 'electromti'); ?>
+                </button>
+                <a href="<?php echo esc_url($product_link); ?>" class="quick-view-btn" title="<?php esc_attr_e('Ver detalles', 'electromti'); ?>">
+                    <i class="fas fa-eye"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <?php
+}
+
+// Check if WooCommerce has products
+function electromti_has_wc_products() {
+    if (!class_exists('WooCommerce')) {
+        return false;
+    }
+
+    $count = wp_count_posts('product');
+    return ($count->publish > 0);
 }
 
 /**

@@ -7,9 +7,19 @@
 
 get_header();
 
-// Get sample data
-$products = electromti_get_sample_products();
+// Get categories
 $categories = electromti_get_categories();
+
+// Check if WooCommerce is active and has products
+$has_wc_products = electromti_has_wc_products();
+
+// Get customizer settings
+$offers_count = electromti_get_option('offers_products_count', 5);
+$bestsellers_count = electromti_get_option('bestsellers_products_count', 5);
+$show_offers = electromti_get_option('show_offers_section', true);
+$show_bestsellers = electromti_get_option('show_bestsellers_section', true);
+$offers_title = electromti_get_option('offers_section_title', __('Ofertas del momento', 'electromti'));
+$bestsellers_title = electromti_get_option('bestsellers_section_title', __('Los más vendidos', 'electromti'));
 ?>
 
 <!-- Hero Slider -->
@@ -22,18 +32,29 @@ $categories = electromti_get_categories();
                 <div class="slide active">
                     <div class="slide-content">
                         <div class="slide-text">
-                            <span class="slide-badge">-15% DESCUENTO</span>
-                            <h2 class="slide-title">iPhone 15 Pro Max</h2>
-                            <p class="slide-desc">El iPhone más potente. Chip A17 Pro, cámara de 48MP y diseño en titanio.</p>
+                            <span class="slide-badge"><?php echo esc_html(electromti_get_option('hero_banner_1_badge', '-15% DESCUENTO')); ?></span>
+                            <h2 class="slide-title"><?php echo esc_html(electromti_get_option('hero_banner_1_title', 'iPhone 15 Pro Max')); ?></h2>
+                            <p class="slide-desc"><?php echo esc_html(electromti_get_option('hero_banner_1_desc', 'El iPhone más potente. Chip A17 Pro, cámara de 48MP y diseño en titanio.')); ?></p>
                             <div class="slide-price">
-                                1.199€ <span class="old-price">1.399€</span>
+                                <?php echo esc_html(electromti_get_option('hero_banner_1_price', '1.199€')); ?>
+                                <?php $old_price_1 = electromti_get_option('hero_banner_1_old_price', '1.399€'); ?>
+                                <?php if (!empty($old_price_1)) : ?>
+                                <span class="old-price"><?php echo esc_html($old_price_1); ?></span>
+                                <?php endif; ?>
                             </div>
-                            <a href="#" class="slide-btn">
-                                Ver ofertas <i class="fas fa-arrow-right"></i>
+                            <a href="<?php echo esc_url(electromti_get_option('hero_banner_1_link', '#')); ?>" class="slide-btn">
+                                <?php _e('Ver ofertas', 'electromti'); ?> <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
                         <div class="slide-image">
+                            <?php
+                            $banner_1_image = electromti_get_option('hero_banner_1_image', '');
+                            if (!empty($banner_1_image)) :
+                            ?>
+                            <img src="<?php echo esc_url($banner_1_image); ?>" alt="<?php echo esc_attr(electromti_get_option('hero_banner_1_title', 'Banner 1')); ?>">
+                            <?php else : ?>
                             <img src="https://placehold.co/400x400/f5f5f5/333333?text=iPhone+15+Pro" alt="iPhone 15 Pro Max">
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -42,18 +63,29 @@ $categories = electromti_get_categories();
                 <div class="slide">
                     <div class="slide-content" style="background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);">
                         <div class="slide-text">
-                            <span class="slide-badge" style="background: #14e6f4; color: #072553;">NUEVO</span>
-                            <h2 class="slide-title">Samsung Galaxy S24 Ultra</h2>
-                            <p class="slide-desc">Galaxy AI integrada. La experiencia Samsung más avanzada.</p>
+                            <span class="slide-badge" style="background: #14e6f4; color: #072553;"><?php echo esc_html(electromti_get_option('hero_banner_2_badge', 'NUEVO')); ?></span>
+                            <h2 class="slide-title"><?php echo esc_html(electromti_get_option('hero_banner_2_title', 'Samsung Galaxy S24 Ultra')); ?></h2>
+                            <p class="slide-desc"><?php echo esc_html(electromti_get_option('hero_banner_2_desc', 'Galaxy AI integrada. La experiencia Samsung más avanzada.')); ?></p>
                             <div class="slide-price">
-                                1.099€ <span class="old-price">1.299€</span>
+                                <?php echo esc_html(electromti_get_option('hero_banner_2_price', '1.099€')); ?>
+                                <?php $old_price_2 = electromti_get_option('hero_banner_2_old_price', '1.299€'); ?>
+                                <?php if (!empty($old_price_2)) : ?>
+                                <span class="old-price"><?php echo esc_html($old_price_2); ?></span>
+                                <?php endif; ?>
                             </div>
-                            <a href="#" class="slide-btn">
-                                Comprar ahora <i class="fas fa-arrow-right"></i>
+                            <a href="<?php echo esc_url(electromti_get_option('hero_banner_2_link', '#')); ?>" class="slide-btn">
+                                <?php _e('Comprar ahora', 'electromti'); ?> <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
                         <div class="slide-image">
+                            <?php
+                            $banner_2_image = electromti_get_option('hero_banner_2_image', '');
+                            if (!empty($banner_2_image)) :
+                            ?>
+                            <img src="<?php echo esc_url($banner_2_image); ?>" alt="<?php echo esc_attr(electromti_get_option('hero_banner_2_title', 'Banner 2')); ?>">
+                            <?php else : ?>
                             <img src="https://placehold.co/400x400/f5f5f5/333333?text=Galaxy+S24" alt="Samsung Galaxy S24">
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -62,18 +94,25 @@ $categories = electromti_get_categories();
                 <div class="slide">
                     <div class="slide-content" style="background: linear-gradient(135deg, #ff6b00 0%, #ff8533 100%);">
                         <div class="slide-text">
-                            <span class="slide-badge" style="background: white; color: #ff6b00;">OFERTAS</span>
-                            <h2 class="slide-title">Electrodomésticos</h2>
-                            <p class="slide-desc">Hasta 40% de descuento en electrodomésticos seleccionados.</p>
+                            <span class="slide-badge" style="background: white; color: #ff6b00;"><?php echo esc_html(electromti_get_option('hero_banner_3_badge', 'OFERTAS')); ?></span>
+                            <h2 class="slide-title"><?php echo esc_html(electromti_get_option('hero_banner_3_title', 'Electrodomésticos')); ?></h2>
+                            <p class="slide-desc"><?php echo esc_html(electromti_get_option('hero_banner_3_desc', 'Hasta 40% de descuento en electrodomésticos seleccionados.')); ?></p>
                             <div class="slide-price">
-                                Desde 199€
+                                <?php echo esc_html(electromti_get_option('hero_banner_3_price', 'Desde 199€')); ?>
                             </div>
-                            <a href="#" class="slide-btn" style="background: #072553;">
-                                Ver todo <i class="fas fa-arrow-right"></i>
+                            <a href="<?php echo esc_url(electromti_get_option('hero_banner_3_link', '#')); ?>" class="slide-btn" style="background: #072553;">
+                                <?php _e('Ver todo', 'electromti'); ?> <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
                         <div class="slide-image">
+                            <?php
+                            $banner_3_image = electromti_get_option('hero_banner_3_image', '');
+                            if (!empty($banner_3_image)) :
+                            ?>
+                            <img src="<?php echo esc_url($banner_3_image); ?>" alt="<?php echo esc_attr(electromti_get_option('hero_banner_3_title', 'Banner 3')); ?>">
+                            <?php else : ?>
                             <img src="https://placehold.co/400x400/f5f5f5/333333?text=Electrodomesticos" alt="Electrodomésticos">
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -88,20 +127,20 @@ $categories = electromti_get_categories();
 
             <!-- Side Banners -->
             <div class="side-banners">
-                <div class="side-banner orange">
+                <a href="<?php echo esc_url(electromti_get_option('side_banner_1_link', '#')); ?>" class="side-banner orange">
                     <div class="side-banner-content">
-                        <span class="side-banner-badge">MAYORISTAS</span>
-                        <h3>Venta al por mayor</h3>
-                        <p>Precios especiales para profesionales</p>
+                        <span class="side-banner-badge"><?php echo esc_html(electromti_get_option('side_banner_1_badge', 'MAYORISTAS')); ?></span>
+                        <h3><?php echo esc_html(electromti_get_option('side_banner_1_title', 'Venta al por mayor')); ?></h3>
+                        <p><?php echo esc_html(electromti_get_option('side_banner_1_desc', 'Precios especiales para profesionales')); ?></p>
                     </div>
-                </div>
-                <div class="side-banner cyan">
+                </a>
+                <a href="<?php echo esc_url(electromti_get_option('side_banner_2_link', '#')); ?>" class="side-banner cyan">
                     <div class="side-banner-content">
-                        <span class="side-banner-badge"><i class="fas fa-tools"></i> SERVICIO</span>
-                        <h3>Reparación express</h3>
-                        <p>Tu móvil como nuevo en 24h</p>
+                        <span class="side-banner-badge"><i class="fas fa-tools"></i> <?php echo esc_html(electromti_get_option('side_banner_2_badge', 'SERVICIO')); ?></span>
+                        <h3><?php echo esc_html(electromti_get_option('side_banner_2_title', 'Reparación express')); ?></h3>
+                        <p><?php echo esc_html(electromti_get_option('side_banner_2_desc', 'Tu móvil como nuevo en 24h')); ?></p>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </div>
@@ -159,13 +198,15 @@ $categories = electromti_get_categories();
                 <i class="fas fa-th-large"></i>
                 <?php _e('Categorías', 'electromti'); ?>
             </h2>
-            <a href="#" class="view-all">
+            <?php if (class_exists('WooCommerce')) : ?>
+            <a href="<?php echo esc_url(get_permalink(wc_get_page_id('shop'))); ?>" class="view-all">
                 <?php _e('Ver todas', 'electromti'); ?> <i class="fas fa-arrow-right"></i>
             </a>
+            <?php endif; ?>
         </div>
         <div class="categories-grid">
             <?php foreach ($categories as $category) : ?>
-            <a href="#" class="category-card">
+            <a href="<?php echo esc_url(isset($category['link']) ? $category['link'] : '#'); ?>" class="category-card">
                 <div class="category-icon">
                     <i class="fas <?php echo esc_attr($category['icon']); ?>"></i>
                 </div>
@@ -177,31 +218,57 @@ $categories = electromti_get_categories();
     </div>
 </section>
 
-<!-- Featured Products -->
+<?php if ($show_offers) : ?>
+<!-- Featured Products / Offers -->
 <section class="products-section">
     <div class="container">
         <div class="section-header">
             <h2 class="section-title">
                 <i class="fas fa-fire"></i>
-                <?php _e('Ofertas del momento', 'electromti'); ?>
+                <?php echo esc_html($offers_title); ?>
             </h2>
-            <a href="#" class="view-all">
+            <?php if (class_exists('WooCommerce')) : ?>
+            <a href="<?php echo esc_url(get_permalink(wc_get_page_id('shop')) . '?on_sale=1'); ?>" class="view-all">
                 <?php _e('Ver más', 'electromti'); ?> <i class="fas fa-arrow-right"></i>
             </a>
-        </div>
-
-        <!-- Tabs -->
-        <div class="products-tabs">
-            <button class="tab-btn active" data-tab="all"><?php _e('Todos', 'electromti'); ?></button>
-            <button class="tab-btn" data-tab="moviles"><?php _e('Móviles', 'electromti'); ?></button>
-            <button class="tab-btn" data-tab="portatiles"><?php _e('Portátiles', 'electromti'); ?></button>
-            <button class="tab-btn" data-tab="electrodomesticos"><?php _e('Electrodomésticos', 'electromti'); ?></button>
-            <button class="tab-btn" data-tab="accesorios"><?php _e('Accesorios', 'electromti'); ?></button>
+            <?php endif; ?>
         </div>
 
         <!-- Products Grid -->
         <div class="products-grid">
-            <?php foreach (array_slice($products, 0, 5) as $product) : ?>
+            <?php
+            if ($has_wc_products) :
+                // Get sale products from WooCommerce
+                $sale_products = electromti_get_sale_products($offers_count);
+
+                if ($sale_products->have_posts()) :
+                    while ($sale_products->have_posts()) :
+                        $sale_products->the_post();
+                        $product = wc_get_product(get_the_ID());
+                        if ($product) {
+                            electromti_render_product_card($product);
+                        }
+                    endwhile;
+                    wp_reset_postdata();
+                else :
+                    // If no sale products, show newest products
+                    $new_products = electromti_get_new_products($offers_count);
+                    if ($new_products->have_posts()) :
+                        while ($new_products->have_posts()) :
+                            $new_products->the_post();
+                            $product = wc_get_product(get_the_ID());
+                            if ($product) {
+                                electromti_render_product_card($product);
+                            }
+                        endwhile;
+                        wp_reset_postdata();
+                    endif;
+                endif;
+            else :
+                // Show sample products
+                $products = electromti_get_sample_products();
+                foreach (array_slice($products, 0, $offers_count) as $product) :
+            ?>
             <div class="product-card">
                 <?php if (!empty($product['badge'])) : ?>
                 <span class="product-badge <?php echo esc_attr($product['badge']); ?>">
@@ -254,27 +321,53 @@ $categories = electromti_get_categories();
                     </div>
                 </div>
             </div>
-            <?php endforeach; ?>
+            <?php
+                endforeach;
+            endif;
+            ?>
         </div>
     </div>
 </section>
+<?php endif; ?>
 
+<?php if ($show_bestsellers) : ?>
 <!-- Best Sellers -->
 <section class="products-section" style="background: white;">
     <div class="container">
         <div class="section-header">
             <h2 class="section-title">
                 <i class="fas fa-star"></i>
-                <?php _e('Los más vendidos', 'electromti'); ?>
+                <?php echo esc_html($bestsellers_title); ?>
             </h2>
-            <a href="#" class="view-all">
+            <?php if (class_exists('WooCommerce')) : ?>
+            <a href="<?php echo esc_url(get_permalink(wc_get_page_id('shop')) . '?orderby=popularity'); ?>" class="view-all">
                 <?php _e('Ver más', 'electromti'); ?> <i class="fas fa-arrow-right"></i>
             </a>
+            <?php endif; ?>
         </div>
 
         <!-- Products Grid -->
         <div class="products-grid">
-            <?php foreach (array_slice($products, 5, 5) as $product) : ?>
+            <?php
+            if ($has_wc_products) :
+                // Get best sellers from WooCommerce
+                $bestsellers = electromti_get_bestseller_products($bestsellers_count);
+
+                if ($bestsellers->have_posts()) :
+                    while ($bestsellers->have_posts()) :
+                        $bestsellers->the_post();
+                        $product = wc_get_product(get_the_ID());
+                        if ($product) {
+                            electromti_render_product_card($product);
+                        }
+                    endwhile;
+                    wp_reset_postdata();
+                endif;
+            else :
+                // Show sample products
+                $products = electromti_get_sample_products();
+                foreach (array_slice($products, 5, $bestsellers_count) as $product) :
+            ?>
             <div class="product-card">
                 <?php if (!empty($product['badge'])) : ?>
                 <span class="product-badge <?php echo esc_attr($product['badge']); ?>">
@@ -327,10 +420,14 @@ $categories = electromti_get_categories();
                     </div>
                 </div>
             </div>
-            <?php endforeach; ?>
+            <?php
+                endforeach;
+            endif;
+            ?>
         </div>
     </div>
 </section>
+<?php endif; ?>
 
 <!-- Brands Section -->
 <section class="brands-section">

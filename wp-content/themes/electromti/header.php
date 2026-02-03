@@ -42,7 +42,7 @@
 
                 <!-- Header Actions -->
                 <div class="header-actions">
-                    <a href="<?php echo esc_url(wp_login_url()); ?>" class="header-action">
+                    <a href="<?php echo esc_url(function_exists('wc_get_page_permalink') ? wc_get_page_permalink('myaccount') : wp_login_url()); ?>" class="header-action">
                         <i class="fas fa-user"></i>
                         <span><?php _e('Mi cuenta', 'electromti'); ?></span>
                     </a>
@@ -59,7 +59,7 @@
     <!-- Tagline Bar -->
     <div class="tagline-bar">
         <div class="container">
-            <span class="tagline-text"><strong><?php _e('Expertos en tecnología', 'electromti'); ?></strong> <?php _e('con un servicio 5 estrellas', 'electromti'); ?></span>
+            <span class="tagline-text"><strong><?php echo esc_html(electromti_get_option('tagline_text_bold', __('Expertos en tecnología', 'electromti'))); ?></strong> <?php echo esc_html(electromti_get_option('tagline_text_normal', __('con un servicio 5 estrellas', 'electromti'))); ?></span>
         </div>
     </div>
 

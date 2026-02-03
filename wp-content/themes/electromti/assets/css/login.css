@@ -282,16 +282,77 @@ body.login::after {
     color: #28a745 !important;
 }
 
-/* Language Switcher - Hide on mobile or style properly */
+/* Language Switcher - Integrated nicely */
+.language-switcher,
+#language-switcher,
+#login .language-switcher {
+    position: static !important;
+    width: 100% !important;
+    text-align: center !important;
+    margin-top: 25px !important;
+    padding-top: 20px !important;
+    border-top: 1px solid #e0e0e0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    flex-wrap: wrap !important;
+    clear: both !important;
+    float: none !important;
+    z-index: 1 !important;
+    background: transparent !important;
+    order: 99 !important;
+}
+
+/* Ensure navigation links appear before language switcher */
+#login {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+#login h1 {
+    order: 1 !important;
+}
+
+#loginform,
+#registerform,
+#lostpasswordform {
+    order: 2 !important;
+}
+
+#login_error,
+.message {
+    order: 3 !important;
+}
+
+#nav {
+    order: 4 !important;
+}
+
+#backtoblog {
+    order: 5 !important;
+}
+
 .language-switcher,
 #language-switcher {
-    position: absolute !important;
-    bottom: 20px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    width: auto !important;
-    text-align: center !important;
-    z-index: 100 !important;
+    order: 6 !important;
+}
+
+.language-switcher label,
+#language-switcher label {
+    display: flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+    color: var(--text-light) !important;
+    font-size: 13px !important;
+}
+
+.language-switcher .dashicons,
+#language-switcher .dashicons {
+    font-size: 16px !important;
+    width: 16px !important;
+    height: 16px !important;
+    color: var(--text-light) !important;
 }
 
 .language-switcher select,
@@ -299,21 +360,33 @@ body.login::after {
     padding: 8px 12px !important;
     border: 1px solid #e0e0e0 !important;
     border-radius: 8px !important;
-    background: white !important;
+    background: #f8f9fa !important;
     font-size: 13px !important;
-    cursor: pointer;
+    cursor: pointer !important;
+    color: var(--text-dark) !important;
+}
+
+.language-switcher select:focus,
+#language-switcher select:focus {
+    border-color: var(--brand-light) !important;
+    outline: none !important;
 }
 
 .language-switcher .button,
 #language-switcher .button {
     padding: 8px 15px !important;
-    margin-left: 5px !important;
     border-radius: 8px !important;
     background: var(--brand-dark) !important;
     color: white !important;
     border: none !important;
     font-size: 13px !important;
-    cursor: pointer;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+}
+
+.language-switcher .button:hover,
+#language-switcher .button:hover {
+    background: var(--brand-button) !important;
 }
 
 /* Responsive */
@@ -334,7 +407,7 @@ body.login::after {
     #login {
         width: 100% !important;
         min-height: 100vh !important;
-        padding: 40px 25px !important;
+        padding: 40px 25px 30px 25px !important;
         margin: 0 !important;
         border-radius: 0 !important;
         box-shadow: none !important;
@@ -350,9 +423,15 @@ body.login::after {
         font-size: 20px;
     }
 
-    /* Hide language switcher on mobile completely */
+    /* Language switcher on mobile - compact style */
     .language-switcher,
     #language-switcher {
+        margin-top: 20px !important;
+        padding-top: 15px !important;
+    }
+
+    .language-switcher label .screen-reader-text,
+    #language-switcher label .screen-reader-text {
         display: none !important;
     }
 }

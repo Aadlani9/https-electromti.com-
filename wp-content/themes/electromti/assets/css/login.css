@@ -282,49 +282,53 @@ body.login::after {
     color: #28a745 !important;
 }
 
-/* Language Switcher */
-.language-switcher {
-    margin-top: 20px !important;
-    text-align: center;
+/* Language Switcher - Hide on mobile or style properly */
+.language-switcher,
+#language-switcher {
+    position: absolute !important;
+    bottom: 20px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: auto !important;
+    text-align: center !important;
+    z-index: 100 !important;
 }
 
-.language-switcher select {
-    padding: 10px 15px !important;
-    border: 2px solid #e0e0e0 !important;
+.language-switcher select,
+#language-switcher select {
+    padding: 8px 12px !important;
+    border: 1px solid #e0e0e0 !important;
     border-radius: 8px !important;
     background: white !important;
-    font-size: 14px !important;
+    font-size: 13px !important;
     cursor: pointer;
 }
 
-/* Privacy Policy */
-.privacy-policy-page-link {
-    text-align: center !important;
-    margin-top: 15px !important;
-}
-
-.privacy-policy-page-link a {
-    color: var(--text-light) !important;
-    font-size: 12px !important;
-}
-
-/* Footer Branding */
-#login::after {
-    content: 'Tu tienda de electrónica de confianza';
-    display: block;
-    text-align: center;
-    font-size: 13px;
-    color: var(--text-light);
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid #e0e0e0;
+.language-switcher .button,
+#language-switcher .button {
+    padding: 8px 15px !important;
+    margin-left: 5px !important;
+    border-radius: 8px !important;
+    background: var(--brand-dark) !important;
+    color: white !important;
+    border: none !important;
+    font-size: 13px !important;
+    cursor: pointer;
 }
 
 /* Responsive */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     body.login {
         padding: 0 !important;
-        align-items: flex-start !important;
+        align-items: stretch !important;
+        justify-content: flex-start !important;
+        flex-direction: column !important;
+        overflow-y: auto !important;
+    }
+
+    body.login::before,
+    body.login::after {
+        display: none !important;
     }
 
     #login {
@@ -334,6 +338,7 @@ body.login::after {
         margin: 0 !important;
         border-radius: 0 !important;
         box-shadow: none !important;
+        flex: 1 !important;
     }
 
     #login h1 a {
@@ -343,6 +348,12 @@ body.login::after {
 
     #login h1::after {
         font-size: 20px;
+    }
+
+    /* Hide language switcher on mobile completely */
+    .language-switcher,
+    #language-switcher {
+        display: none !important;
     }
 }
 
